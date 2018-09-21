@@ -46,19 +46,7 @@ namespace SmokeTest
 
         private void PopulateTheReports()
         {
-
             TheReports = ste.Reports.ToList();
-        }
-
-        private void DgSummary_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var g = (DataGrid)sender;
-            var itm = (SmokeTestDBClassLibrary.Report)g.SelectedItem;
-            var report = new WpfReport
-            {
-                TheReport = itm
-            };
-            report.Show();
         }
 
         private void BtnNewRelease_Click(object sender, RoutedEventArgs e)
@@ -72,6 +60,35 @@ namespace SmokeTest
         {
             var reports = new ReleaseReports();
             reports.Show();
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            ste.SaveChanges();
+        }
+
+        private void BtnSections_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var g = (DataGrid)sender;
+                var itm = (SmokeTestDBClassLibrary.Report)g.SelectedItem;
+                var report = new WpfReport
+                {
+                    TheReport = itm
+                };
+                report.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var newRpt = new NewReport();
+            newRpt.Show();
         }
     }
 }

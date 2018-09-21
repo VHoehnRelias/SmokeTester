@@ -8,7 +8,23 @@
         Title="Smoke Test - Summary" Height="450" Width="800">
     <Grid>
         <Button x:Name="btnNewRelease" Content="New Release" HorizontalAlignment="Left" Margin="154,25,0,0" VerticalAlignment="Top" Width="75" Click="BtnNewRelease_Click"/>
-        <DataGrid x:Name="dgSummary" Margin="10,78,9.6,10" SelectionChanged="DgSummary_SelectionChanged" ItemsSource="{Binding TheReports}">
+        <Button x:Name="btnReports" Content="Reports" HorizontalAlignment="Left" Margin="304,25,0,0" VerticalAlignment="Top" Width="75" Click="BtnReports_Click"/>
+        <Button x:Name="BtnAdd" Content="Add" HorizontalAlignment="Left" Margin="478,25,0,0" VerticalAlignment="Top" Width="75" Click="BtnAdd_Click"  />
+        <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Left" Margin="478,25,0,0" VerticalAlignment="Top" Width="75" Click="BtnSave_Click" />
+        <DataGrid x:Name="dgSummary" Margin="10,78,9.6,10" ItemsSource="{Binding TheReports}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Report Name" Binding="{Binding Report_Name}" />
+                <DataGridTextColumn Header="File Name" Binding="{Binding File_Name}" />
+                <DataGridTextColumn Header="Left Naviagtion / Menu Location" Binding="{Binding Left_Navigation_Menu_location}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Sections" Name="BtnSections" Click="BtnSections_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
             <DataGrid.AlternatingRowBackground>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FFFCFDFA" Offset="0"/>
@@ -16,7 +32,5 @@
                 </LinearGradientBrush>
             </DataGrid.AlternatingRowBackground>
         </DataGrid>
-        <Button x:Name="btnReports" Content="Reports" HorizontalAlignment="Left" Margin="304,25,0,0" VerticalAlignment="Top" Width="75" Click="BtnReports_Click"/>
-
     </Grid>
 </Window>
