@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4ab52624f866456c89f0aac83451fcc1" Name="Diagram1">
+        <EntityTypeShape EntityType="SmokeTestsModel.Evaluator" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsModel.Release" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsModel.Report_Evaluation" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsModel.Report" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsModel.Section_Evaluation" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsModel.Section" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsModel.Status" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <AssociationConnector Association="SmokeTestsModel.FK_Report_Evaluation_ToEvaluators" ManuallyRouted="false" />
+        <AssociationConnector Association="SmokeTestsModel.FK_Section_Evaluation_ToEvaluators" ManuallyRouted="false" />
+        <AssociationConnector Association="SmokeTestsModel.FK_Report_Evaluation_ToRelease" ManuallyRouted="false" />
+        <AssociationConnector Association="SmokeTestsModel.FK_Section_Evaluation_ToRelease" ManuallyRouted="false" />
+        <AssociationConnector Association="SmokeTestsModel.FK_Report_Evaluation_ToReports" ManuallyRouted="false" />
+        <AssociationConnector Association="SmokeTestsModel.FK_Report_Evaluation_ToStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="SmokeTestsModel.FK_Section_Evaluation_ToReport" ManuallyRouted="false" />
+        <AssociationConnector Association="SmokeTestsModel.FK_Sections_ToReports" ManuallyRouted="false" />
+        <AssociationConnector Association="SmokeTestsModel.FK_Section_Evaluation_ToSections" ManuallyRouted="false" />
+        <AssociationConnector Association="SmokeTestsModel.FK_Section_Evaluation_ToStatus" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

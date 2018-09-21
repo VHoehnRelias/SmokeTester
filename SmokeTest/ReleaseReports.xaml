@@ -1,0 +1,57 @@
+﻿<Window x:Class="SmokeTest.ReleaseReports"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmokeTest"
+        mc:Ignorable="d"
+        Title="Release Reports" Height="450" Width="800">
+        <!--d:DataContext="{d:DesignData Source=SmokeTest\ReleaseReports.xaml}"
+        DataContext="{Binding RelativeSource={RelativeSource AncestorLevel=Self}}"-->
+    <Window.Resources>
+        <CollectionViewSource x:Key="theStatus" Source="{Binding TheStatuses}" />
+        <CollectionViewSource x:Key="theEvalues" Source="{Binding TheEvaluators}" />
+    </Window.Resources>
+    <Grid>
+        <DataGrid x:Name="DgReports" Margin="10,122,9.6,10" ItemsSource="{Binding TheReports}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Report.Id}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Report Name" Binding="{Binding Report.Report_Name}" IsReadOnly="True" />
+                <DataGridComboBoxColumn x:Name="DgEvaluator" Header="Evaluator Name"
+                                ItemsSource="{Binding Source={StaticResource theEvalues}}" 
+                                SelectedValueBinding="{Binding Evaluator_ID, Mode=TwoWay}"                     
+                                SelectedValuePath="Id"
+                                DisplayMemberPath="Name"/>
+                <DataGridComboBoxColumn Header="Status" 
+                                ItemsSource="{Binding Source={StaticResource theStatus}}" 
+                                SelectedValueBinding="{Binding Status_ID, Mode=TwoWay}"
+                                SelectedValuePath="Id"  
+                                DisplayMemberPath="Name"/>
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment, Mode=TwoWay}"  />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Detail" Name="BtnDetail" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Sections" Name="BtnSections" Click="BtnSections_Click"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Save" Name="BtnSaveRecord" Click="BtnSaveRecord_Click" Tag="{Binding Id}"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>                
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

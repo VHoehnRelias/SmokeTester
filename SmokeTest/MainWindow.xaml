@@ -1,0 +1,22 @@
+﻿<Window x:Class="SmokeTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmokeTest"
+        mc:Ignorable="d"
+        Title="Smoke Test - Summary" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="btnNewRelease" Content="New Release" HorizontalAlignment="Left" Margin="154,25,0,0" VerticalAlignment="Top" Width="75" Click="BtnNewRelease_Click"/>
+        <DataGrid x:Name="dgSummary" Margin="10,78,9.6,10" SelectionChanged="DgSummary_SelectionChanged" ItemsSource="{Binding TheReports}">
+            <DataGrid.AlternatingRowBackground>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFCFDFA" Offset="0"/>
+                    <GradientStop Color="#FF6D834F" Offset="1"/>
+                </LinearGradientBrush>
+            </DataGrid.AlternatingRowBackground>
+        </DataGrid>
+        <Button x:Name="btnReports" Content="Reports" HorizontalAlignment="Left" Margin="304,25,0,0" VerticalAlignment="Top" Width="75" Click="BtnReports_Click"/>
+
+    </Grid>
+</Window>
