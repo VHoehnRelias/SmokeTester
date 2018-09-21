@@ -51,7 +51,12 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>                
             </DataGrid.Columns>
+            <DataGrid.AlternatingRowBackground>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFCFDFA" Offset="0"/>
+                    <GradientStop Color="#FF6D834F" Offset="1"/>
+                </LinearGradientBrush>
+            </DataGrid.AlternatingRowBackground>            
         </DataGrid>
-
     </Grid>
 </Window>
