@@ -133,10 +133,10 @@ namespace SmokeTest
 
             //var sitm = ste.Report_Evaluations.Single(a => a.Id == itm.Id);
             //ste.Entry(sitm).CurrentValues.SetValues(itm);
-            var btn = (Button)sender;
-            var itm = TheReports[((int)btn.Tag)-1];
+            //var btn = (Button)sender;
+            //var itm = TheReports[((int)btn.Tag)-1];
 
-            //ste.SaveChanges();
+            ste.SaveChanges();
         }
     }
 }
