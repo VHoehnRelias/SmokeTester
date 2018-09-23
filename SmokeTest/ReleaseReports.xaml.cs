@@ -122,6 +122,7 @@ namespace SmokeTest
             var itm = (Report_Evaluation)DgReports.SelectedItem;
             var report = new ReleaseReportSections
             {
+                TheRelease = theRelease,
                 TheReport = itm
             };
             report.Show();
@@ -137,6 +138,15 @@ namespace SmokeTest
             //var itm = TheReports[((int)btn.Tag)-1];
 
             ste.SaveChanges();
+        }
+
+        private void BtnView_Click(object sender, RoutedEventArgs e)
+        {
+            var vwr = new WebViewer
+            {
+                WebPage = "https://www.cmtanalytics.com/AnalyticsView.aspx"
+            };
+            vwr.Show();
         }
     }
 }

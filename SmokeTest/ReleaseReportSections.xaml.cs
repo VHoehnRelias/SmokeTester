@@ -21,8 +21,16 @@ namespace SmokeTest
     /// </summary>
     public partial class ReleaseReportSections : Window, INotifyPropertyChanged
     {
-        private SmokeTestsEntitiesNew stm;
+        private SmokeTestsEntitiesNew ste;
 
+        private Release theRelease;
+
+        public Release TheRelease
+        {
+            get { return theRelease; }
+            set { theRelease = value; }
+        }
+        
         private Report_Evaluation theReport;
 
         public Report_Evaluation TheReport
@@ -39,6 +47,36 @@ namespace SmokeTest
             }
         }
 
+        private List<Evaluator> theEvaluators;
+
+        public List<Evaluator> TheEvaluators
+        {
+            get { return theEvaluators; }
+            set
+            {
+                if (theEvaluators != value)
+                {
+                    theEvaluators = value;
+                    OnPropertyChanged("TheEvaluators");
+                }
+            }
+        }
+
+        private List<Status> theStatuses;
+
+        public List<Status> TheStatuses
+        {
+            get { return theStatuses; }
+            set
+            {
+                if (theStatuses != value)
+                {
+                    theStatuses = value;
+                    OnPropertyChanged("TheStatues");
+                }
+            }
+        }
+
         private List<Section_Evaluation> sections;
 
         public List<Section_Evaluation> Sections
@@ -51,12 +89,24 @@ namespace SmokeTest
         {
             InitializeComponent();
             DataContext = this;
-            stm = new SmokeTestsEntitiesNew();
+            ste = new SmokeTestsEntitiesNew();
+            LoadStatuses();
+            LoadEvaluators();
+        }
+
+        private void LoadStatuses()
+        {
+            TheStatuses = ste.Status.ToList();
+        }
+
+        private void LoadEvaluators()
+        {
+            TheEvaluators = ste.Evaluators.ToList();
         }
 
         private void UpdateList()
         {
-            Sections = stm.Section_Evaluations.Where(s => s.Release_ID == TheReport.Release_ID & s.Report_ID == TheReport.Report_ID).ToList();
+            Sections = ste.Section_Evaluations.Where(s => s.Release_ID == TheReport.Release_ID & s.Report_ID == TheReport.Report_ID).ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -64,6 +114,25 @@ namespace SmokeTest
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void BtnView_Click(object sender, RoutedEventArgs e)
+        {
+            var vwr = new WebViewer
+            {
+                WebPage = "https://www.cmtanalytics.com/AnalyticsView.aspx"
+            };
+            vwr.Show();
+        }
+
+        private void BtnSaveRecord_Click(object sender, RoutedEventArgs e)
+        {
+            ste.SaveChanges();
+        }
+
+        private void BtnDetail_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -71,8 +71,10 @@ namespace SmokeTest
         {
             try
             {
-                var g = (DataGrid)sender;
-                var itm = (SmokeTestDBClassLibrary.Report)g.SelectedItem;
+                var g = (Button)sender;
+                //var itm = (SmokeTestDBClassLibrary.Report)g.SelectedItem;
+                var id = (int)g.Tag;
+                var itm = TheReports.Single(a => a.Id == id);
                 var report = new WpfReport
                 {
                     TheReport = itm

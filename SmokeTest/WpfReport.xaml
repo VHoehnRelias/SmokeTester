@@ -10,28 +10,26 @@
         <Style TargetType="Label" >
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Padding" Value="5" />
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Width="320" Height="35" >
-            <ComboBox />
-            <Button Content="Button" Width="75"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="38,60,0,0" VerticalAlignment="Top" Width="320" Height="35">
-            <Label Content="Report:  " />
-            <Label x:Name="lblReportName" Content="{Binding TheReport.Report_Name}" Margin="0,0,0,0.2" Width="235" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="363,10,0,0" VerticalAlignment="Top" Height="35" HorizontalAlignment="Left" Width="421">
-            <Label Content="File Name:  " />
-            <Label x:Name="lblReportFile" Margin="0,0,0,0.2" Width="326" >
-            </Label>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="38,68,0,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Width="545">
-            <Label Content="Navigation:  " />
-            <Label x:Name="lblReportNavi" Content="{Binding TheReport.Left_Navigation_Menu_location}" Margin="0,0,0,0.2" Width="441" />
-            <Label Content="Navigation:  " Margin="0,-1,0,1.2" />
-        </StackPanel>
-        <Button x:Name="BtnView" Content="View" Margin="10,100,0,0" VerticalAlignment="Top" Height="35" FontSize="16" FontWeight="Bold" Click="BtnView_Click"/>
+        <Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top" Height="35" Width="421">
+                <Label Content="Report:" FontWeight="Light" />
+                <Label x:Name="lblReportFile" Content="{Binding TheReport.Report_Name}" Margin="0,0,0,0.2" Width="326" >
+                </Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="38,40,0,0" VerticalAlignment="Top" Width="320" Height="30">
+                <Label Content="File Name:"  FontWeight="Light" /> 
+                <Label x:Name="lblReportName" Content="{Binding TheReport.File_Name}" Margin="0,0,0,0.2" Width="235" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="38,68,0,0" VerticalAlignment="Top" Height="30" Width="545">
+                <Label Content="Navigation:" FontWeight="Light" />
+                <Label x:Name="lblReportNavi" Content="{Binding TheReport.Left_Navigation_Menu_location}" Margin="0,0,0,0.2" Width="441" />
+            </StackPanel>
+            <Button x:Name="BtnView" Content="View" Margin="10,100,0,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnView_Click"/>
+        </Grid>
         <DataGrid x:Name="DgReport" Margin="10,140,9.6,10" SelectionChanged="DgReport_SelectionChanged" ItemsSource="{Binding ReportSections}">
             <DataGrid.AlternatingRowBackground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
