@@ -5,21 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmokeTest"
         mc:Ignorable="d"
-        Title="Release Report Sections" Height="750" Width="1202">
+        Title="Release Report Sections" Height="750" Width="1302">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="BasicStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <CollectionViewSource x:Key="theStatus" Source="{Binding TheStatuses}" />
-            <CollectionViewSource x:Key="theEvalues" Source="{Binding TheEvaluators}" />
-            <Style TargetType="Label">
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-            </Style>
         </ResourceDictionary>
     </Window.Resources>    
     <Grid>
+        <Grid.Resources>
+            <CollectionViewSource x:Key="theStatus" Source="{Binding TheStatuses}" />
+            <CollectionViewSource x:Key="theEvalues" Source="{Binding TheEvaluators}" />
+        </Grid.Resources>
         <Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="38,5,0,0" VerticalAlignment="Top" Height="35">
                 <Label Content="Current Release:" FontWeight="Light" />
@@ -40,7 +38,7 @@
             </StackPanel>
             <Button x:Name="BtnView" Content="View" Margin="884,90,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="30" FontSize="12" Width="100" FontWeight="Bold" Click="BtnView_Click"/>
         </Grid>
-        <DataGrid x:Name="dgSections" Margin="10,130,9.6,10" ItemsSource="{Binding Sections}">
+        <DataGrid x:Name="dgSections" Margin="10,130,9.6,10" ItemsSource="{Binding Sections}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Section.Id}" IsReadOnly="True" Visibility="Hidden" />
                 <DataGridComboBoxColumn x:Name="DgEvaluator" Header="Evaluator Name" Width="150" HeaderStyle="{StaticResource ctrHeader}"
@@ -60,7 +58,6 @@
                                     EditingElementStyle="{StaticResource ctrGridCellEdit}"/>
                 <DataGridComboBoxColumn Header="Status"  HeaderStyle="{StaticResource ctrHeader}" Width="100"
                                 ItemsSource="{Binding Source={StaticResource theStatus}}" 
-                                SelectedItemBinding="{Binding Status_ID}"
                                 SelectedValueBinding="{Binding Status_ID, Mode=TwoWay}"
                                 SelectedValuePath="Id"  
                                 DisplayMemberPath="Name"/>

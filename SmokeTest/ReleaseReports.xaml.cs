@@ -148,5 +148,10 @@ namespace SmokeTest
             };
             vwr.Show();
         }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            ste.SaveChanges();
+        }
     }
 }
