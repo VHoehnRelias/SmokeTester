@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmokeTest"
         mc:Ignorable="d"
-        Title="Release Report Sections" Height="750" Width="1302">
+        Title="Release Report Sections" Height="750" Width="1275">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,26 +19,31 @@
             <CollectionViewSource x:Key="theEvalues" Source="{Binding TheEvaluators}" />
         </Grid.Resources>
         <Grid>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="38,5,0,0" VerticalAlignment="Top" Height="35">
-                <Label Content="Current Release:" FontWeight="Light" />
-                <Label Content="{Binding TheRelease.Date}" />
-                <Label Content="{Binding TheRelease.Name}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="38,35,0,0" VerticalAlignment="Top" Height="35">
-                <Label Content="Report:" FontWeight="Light" />
-                <Label x:Name="lblReportFile" Content="{Binding TheReport.Report.Report_Name}" Margin="0,0,0,0.2" Width="400" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="38,65,0,0" VerticalAlignment="Top" Height="35">
-                <Label Content="File Name:"  FontWeight="Light" />
-                    <Label x:Name="lblReportName" Content="{Binding TheReport.Report.File_Name}" Margin="0,0,0,0.2" Width="400" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="38,95,0,0" VerticalAlignment="Top" Height="35">
-                <Label Content="Navigation:" FontWeight="Light" />
-                <Label x:Name="lblReportNavi" Content="{Binding TheReport.Report.Left_Navigation_Menu_location}" Margin="0,0,0,0.2" Width="400" />
-            </StackPanel>
-            <Button x:Name="BtnView" Content="View" Margin="884,90,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="30" FontSize="12" Width="100" FontWeight="Bold" Click="BtnView_Click"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="170">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35">
+                    <Label Content="Current Release:" FontWeight="Light" />
+                    <Label Content="{Binding TheRelease.Date}" />
+                    <Label Content="{Binding TheRelease.Name}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35">
+                    <Label Content="Report:" FontWeight="Light" />
+                    <Label x:Name="lblReportFile" Content="{Binding TheReport.Report.Report_Name}" Margin="0,0,0,0.2" Width="400" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35">
+                    <Label Content="File Name:"  FontWeight="Light" />
+                        <Label x:Name="lblReportName" Content="{Binding TheReport.Report.File_Name}" Margin="0,0,0,0.2" Width="400" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35">
+                    <Label Content="Navigation:" FontWeight="Light" />
+                    <Label x:Name="lblReportNavi" Content="{Binding TheReport.Report.Left_Navigation_Menu_location}" Margin="0,0,0,0.2" Width="400" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="BtnView" Content="View" Margin="10,5" VerticalAlignment="Top" HorizontalAlignment="Right" Height="25" Width="75" FontSize="12" FontWeight="Bold" Click="BtnView_Click"/>
+                    <Button x:Name="BtnSave" Content="Save" Margin="10,5" VerticalAlignment="Top" HorizontalAlignment="Right" Height="25" Width="75" FontSize="12" FontWeight="Bold" Click="BtnSave_Click"/>
+                </StackPanel>
+            </StackPanel>    
         </Grid>
-        <DataGrid x:Name="dgSections" Margin="10,130,9.6,10" ItemsSource="{Binding Sections}" AutoGenerateColumns="False">
+        <DataGrid x:Name="dgSections" Margin="10,180,10,9.8" ItemsSource="{Binding Sections}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Section.Id}" IsReadOnly="True" Visibility="Hidden" />
                 <DataGridComboBoxColumn x:Name="DgEvaluator" Header="Evaluator Name" Width="150" HeaderStyle="{StaticResource ctrHeader}"
@@ -73,13 +78,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Save" HeaderStyle="{StaticResource ctrHeader}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Save" Name="BtnSaveRecord" Click="BtnSaveRecord_Click" Tag="{Binding Id}"  />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>            
             </DataGrid.Columns>
             <DataGrid.AlternatingRowBackground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

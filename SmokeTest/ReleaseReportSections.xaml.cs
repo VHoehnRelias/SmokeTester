@@ -125,14 +125,14 @@ namespace SmokeTest
             vwr.Show();
         }
 
-        private void BtnSaveRecord_Click(object sender, RoutedEventArgs e)
-        {
-            ste.SaveChanges();
-        }
-
         private void BtnDetail_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            ste.SaveChanges();
         }
     }
 }

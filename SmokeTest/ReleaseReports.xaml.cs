@@ -144,7 +144,7 @@ namespace SmokeTest
         {
             var vwr = new WebViewer
             {
-                WebPage = "https://www.cmtanalytics.com/AnalyticsView.aspx"
+                WebPage = "https://relias.atlassian.net/browse/KALAMATA-248"
             };
             vwr.Show();
         }
