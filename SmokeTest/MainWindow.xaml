@@ -5,26 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmokeTest"
         mc:Ignorable="d"
-        Title="Smoke Test - Summary" Height="750" Width="1000">
+        Title="Smoke Test - Summary" Height="750" Width="1030">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="BasicStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Height" Value="30" />
+                <Setter Property="Padding" Value="10,5" />
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Button x:Name="btnNewRelease" Content="Create New Release" Margin="862,25,10.6,0" Click="BtnNewRelease_Click" HorizontalAlignment="Stretch"/>
-        <Button x:Name="btnReports" Content="Go To Release Reports"  Margin="581,25,0,0" Click="BtnReports_Click" Width="140"/>
-        <Button x:Name="BtnAdd" Content="Add New Report" Margin="427,25,0,0" Click="BtnAdd_Click" Width="111"  />
-        <Button x:Name="BtnSave" Content="Save" Margin="0,25,172.6,0" Click="BtnSave_Click" HorizontalAlignment="Right" Width="56" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnNewRelease" Content="Create New Release" Click="BtnNewRelease_Click" />
+            <Button x:Name="btnReports" Content="Go To Release Reports"  Click="BtnReports_Click" />
+            <Button x:Name="BtnAdd" Content="Add New Report" Click="BtnAdd_Click" />
+            <Button x:Name="BtnSave" Content="Save" Click="BtnSave_Click" />
+        </StackPanel>
         <DataGrid x:Name="dgSummary" Margin="10,78,9.6,10" ItemsSource="{Binding TheReports}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" CellStyle="{StaticResource tbxGridCell}" EditingElementStyle="{StaticResource tbxGridCellEdit}"  />
-                <DataGridTextColumn Header="Report Name" Binding="{Binding Report_Name}" CellStyle="{StaticResource tbxGridCell}" EditingElementStyle="{StaticResource tbxGridCell}" />
-                <DataGridTextColumn Header="File Name" Binding="{Binding File_Name}"  CellStyle="{StaticResource tbxGridCell}" EditingElementStyle="{StaticResource tbxGridCell}" />
-                <DataGridTextColumn Header="Left Naviagtion / Menu Location" Binding="{Binding Left_Navigation_Menu_location}"  CellStyle="{StaticResource tbxGridCell}" EditingElementStyle="{StaticResource tbxGridCell}" />
-                <DataGridTemplateColumn Header="Sections">
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" HeaderStyle="{StaticResource ctrHeader}" CellStyle="{StaticResource ctrGridCell}" ElementStyle="{StaticResource tbxGridCell}" EditingElementStyle="{StaticResource ctrGridCellEdit}"  />
+                <DataGridTextColumn Header="Report Name" Binding="{Binding Report_Name}" HeaderStyle="{StaticResource ctrHeader}" CellStyle="{StaticResource ctrGridCell}" ElementStyle="{StaticResource tbxGridCell}" EditingElementStyle="{StaticResource ctrGridCellEdit}" />
+                <DataGridTextColumn Header="File Name" Binding="{Binding File_Name}" HeaderStyle="{StaticResource ctrHeader}" CellStyle="{StaticResource ctrGridCell}" ElementStyle="{StaticResource tbxGridCell}" EditingElementStyle="{StaticResource ctrGridCellEdit}" />
+                <DataGridTextColumn Header="Left Naviagtion / Menu Location" Binding="{Binding Left_Navigation_Menu_location}" HeaderStyle="{StaticResource ctrHeader}" CellStyle="{StaticResource ctrGridCell}" ElementStyle="{StaticResource tbxGridCell}" EditingElementStyle="{StaticResource ctrGridCellEdit}" />
+                <DataGridTemplateColumn Header="Sections" HeaderStyle="{StaticResource ctrHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Sections" Name="BtnSections" Click="BtnSections_Click" Margin="5" Tag="{Binding Id}" />

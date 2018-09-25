@@ -6,16 +6,39 @@
         <Setter Property="HorizontalAlignment" Value ="Left" />
         <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
-    <Style TargetType="Control" x:Key="tbxGridCell">
-        <Setter Property="Foreground" Value="Blue" />
-        <Setter Property="Padding" Value="5"/>
+    <Style TargetType="Control" x:Key="ctrHeader">
+        <Setter Property="Background" Value="DarkBlue"/>
+        <Setter Property="Foreground" Value="White" />
         <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Padding" Value="5"/>
+    </Style>    
+    <Style TargetType="Control" x:Key="ctrGridCell">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Padding" Value="5,10"/>
     </Style>
-    <Style TargetType="Control" x:Key="tbxGridCellEdit">
+    <Style TargetType="Control" x:Key="ctrGridCellEdit">
         <Setter Property="Foreground" Value="Blue" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Padding" Value="5"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="Background" Value="LightBlue"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="tbxGridCell">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Padding" Value="5,10"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    <Style TargetType="ComboBox" x:Key="cbxGridCell">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Padding" Value="5,10"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="Label">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 </ResourceDictionary>

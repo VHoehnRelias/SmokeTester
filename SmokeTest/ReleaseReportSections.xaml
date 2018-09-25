@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmokeTest"
         mc:Ignorable="d"
-        Title="Release Report Sections" Height="750" Width="1000">
+        Title="Release Report Sections" Height="750" Width="1202">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -43,37 +43,40 @@
         <DataGrid x:Name="dgSections" Margin="10,130,9.6,10" ItemsSource="{Binding Sections}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Section.Id}" IsReadOnly="True" Visibility="Hidden" />
-                <DataGridComboBoxColumn x:Name="DgEvaluator" Header="Evaluator Name" Width="100"
+                <DataGridComboBoxColumn x:Name="DgEvaluator" Header="Evaluator Name" Width="150" HeaderStyle="{StaticResource ctrHeader}"
                                 ItemsSource="{Binding Source={StaticResource theEvalues}}" 
                                 SelectedValueBinding="{Binding Evaluator_ID, Mode=TwoWay}"                     
                                 SelectedValuePath="Id"
-                                DisplayMemberPath="Name"
-                                CellStyle="{StaticResource tbxGridCell}" 
-                                EditingElementStyle="{StaticResource tbxGridCellEdit}" />
-                <DataGridTextColumn Header="Name" Binding="{Binding Section.Section1}" IsReadOnly="True" MaxWidth="400"
-                                CellStyle="{StaticResource tbxGridCell}" 
-                                EditingElementStyle="{StaticResource tbxGridCellEdit}" />
-                <DataGridTextColumn Header="Description" Binding="{Binding Section.Description}" IsReadOnly="True" 
-                                CellStyle="{StaticResource tbxGridCell}" 
-                                EditingElementStyle="{StaticResource tbxGridCellEdit}" />                
-                <DataGridComboBoxColumn Header="Status" 
+                                DisplayMemberPath="Name"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Section.Section1}" IsReadOnly="True" Width="300"
+                                    HeaderStyle="{StaticResource ctrHeader}" 
+                                    CellStyle="{StaticResource ctrGridCell}" 
+                                    ElementStyle="{StaticResource tbxGridCell}" 
+                                    EditingElementStyle="{StaticResource ctrGridCellEdit}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Section.Description}" IsReadOnly="True" Width="400" 
+                                    HeaderStyle="{StaticResource ctrHeader}" 
+                                    CellStyle="{StaticResource ctrGridCell}" 
+                                    ElementStyle="{StaticResource tbxGridCell}" 
+                                    EditingElementStyle="{StaticResource ctrGridCellEdit}"/>
+                <DataGridComboBoxColumn Header="Status"  HeaderStyle="{StaticResource ctrHeader}" Width="100"
                                 ItemsSource="{Binding Source={StaticResource theStatus}}" 
+                                SelectedItemBinding="{Binding Status_ID}"
                                 SelectedValueBinding="{Binding Status_ID, Mode=TwoWay}"
                                 SelectedValuePath="Id"  
-                                DisplayMemberPath="Name"
-                                CellStyle="{StaticResource tbxGridCell}" 
-                                EditingElementStyle="{StaticResource tbxGridCellEdit}" />
-                <DataGridTextColumn Header="Comment" Binding="{Binding Comment, Mode=TwoWay}"
-                                CellStyle="{StaticResource tbxGridCell}" 
-                                EditingElementStyle="{StaticResource tbxGridCellEdit}" />
-                <DataGridTemplateColumn>
+                                DisplayMemberPath="Name"/>
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment, Mode=TwoWay}" Width="200"
+                                    HeaderStyle="{StaticResource ctrHeader}" 
+                                    CellStyle="{StaticResource ctrGridCell}" 
+                                    ElementStyle="{StaticResource tbxGridCell}" 
+                                    EditingElementStyle="{StaticResource ctrGridCellEdit}"/>
+                <DataGridTemplateColumn Header="Detail" HeaderStyle="{StaticResource ctrHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Detail" Name="BtnDetail" Click="BtnDetail_Click" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Save" HeaderStyle="{StaticResource ctrHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Save" Name="BtnSaveRecord" Click="BtnSaveRecord_Click" Tag="{Binding Id}"  />
