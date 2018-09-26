@@ -41,7 +41,8 @@
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Label Content="Release:" />
-            <ComboBox Width="300" ItemsSource="{Binding Releases}" />
+            <ComboBox Width="300" ItemsSource="{Binding Releases}" DisplayMemberPath="Name" 
+                      SelectedValue="{Binding TheRelease, Mode=TwoWay}" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2">
             <DataGrid ItemsSource="{Binding ReportSummmaries}" />

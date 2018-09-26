@@ -58,8 +58,15 @@ namespace SmokeTest
 
         private void BtnReports_Click(object sender, RoutedEventArgs e)
         {
-            var reports = new ReleaseReports();
+            Release latestRelease = GetLatestRelease();
+            var reports = new ReleaseReports(latestRelease);
             reports.Show();
+        }
+
+        private Release GetLatestRelease()
+        {
+            Release theRelease = ste.Releases.ToList().Last();
+            return theRelease;
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)

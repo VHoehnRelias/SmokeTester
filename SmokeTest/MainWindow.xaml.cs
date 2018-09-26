@@ -44,6 +44,21 @@ namespace SmokeTest
             set { releases = value; }
         }
 
+        private Release theRelease;
+
+        public Release TheRelease
+        {
+            get { return theRelease; }
+            set
+            {
+                if (theRelease != value)
+                {
+                    theRelease = value;
+                    OnPropertyChanged("TheRelease");
+                }
+            }
+        }
+
         private List<ReportSummmary> reportSummmaries;
 
         public List<ReportSummmary> ReportSummmaries
@@ -83,15 +98,6 @@ namespace SmokeTest
         {
             var lst = ste.Releases.ToList();
             return lst;
-            //var pRelease = lst.Last();
-            //if (pRelease is null)
-            //{
-            //    pRelease = new Release
-            //    {
-            //        Date = DateTime.Now
-            //    };
-            //}
-            //return pRelease;
         }
 
         private void PopulateReportSummaries()
@@ -112,7 +118,7 @@ namespace SmokeTest
 
         private void BtnReleaseReports_Click(object sender, RoutedEventArgs e)
         {
-            var frm = new ReleaseReports();
+            var frm = new ReleaseReports(TheRelease);
             frm.Show();
         }
     }

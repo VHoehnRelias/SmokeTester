@@ -28,7 +28,14 @@ namespace SmokeTest
         public Release TheRelease
         {
             get { return theRelease; }
-            set { theRelease = value; }
+            set
+            {
+                if(theRelease != value)
+                {
+                    theRelease = value;
+                    OnPropertyChanged("TheRelease");
+                }
+            }
         }
         
         private List<Report_Evaluation> theReports;
@@ -76,11 +83,17 @@ namespace SmokeTest
             }
         }
 
-        public ReleaseReports()
+        public ReleaseReports(Release theRelease)
         {
             InitializeComponent();
             DataContext = this;
+            TheRelease = theRelease;
             ste = new SmokeTestsEntitiesNew();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
             GetLatestRelease();
             LoadEvaluators();
             LoadStatuses();
@@ -144,7 +157,8 @@ namespace SmokeTest
         {
             var vwr = new WebViewer
             {
-                WebPage = "https://relias.atlassian.net/browse/KALAMATA-248"
+                //WebPage = "https://relias.atlassian.net/browse/KALAMATA-248"
+                WebPage = "http://new.vhoehn.com"
             };
             vwr.Show();
         }
