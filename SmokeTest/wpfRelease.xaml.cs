@@ -23,13 +23,13 @@ namespace SmokeTest
     {
         private SmokeTestsEntitiesNew stm;
 
-        private Release theRelease;
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private Release theRelease;
 
         public Release TheRelease
         {
@@ -49,22 +49,7 @@ namespace SmokeTest
             InitializeComponent();
             DataContext = this;
             stm = new SmokeTestsEntitiesNew();
-            TheRelease = GetRelease();
-
-        }
-
-        private Release GetRelease()
-        {
-            var lst = stm.Releases.ToList();
-            var pRelease = lst.Last();
-            if (pRelease is null)
-            {
-                pRelease = new Release
-                {
-                    Date = DateTime.Now
-                };
-            }
-            return pRelease;
+            theRelease = new Release();
         }
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
@@ -72,8 +57,6 @@ namespace SmokeTest
             if (TheRelease.Id != 0)
             {
                 MessageBox.Show(string.Format("{0} already exists.", TheRelease.Name));
-                //AddToReportEvaluations();
-                AddToSectionEvaluations();
             }
             else
             {

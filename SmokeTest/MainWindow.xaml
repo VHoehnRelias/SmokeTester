@@ -6,16 +6,48 @@
         xmlns:local="clr-namespace:SmokeTest"
         mc:Ignorable="d"
         Title="Smoking" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="BasicStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+            <Style TargetType="DataGrid">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <Grid Name="GrdSettings" Grid.Column="0">
-            <Button Name="BtnEditReports" Content="Add and Edit Reports" Click="BtnEditReports_Click" />
+            <Button Name="BtnEditReports" Content="Add and Edit Reports" Click="BtnEditReports_Click" Foreground="Red" />
         </Grid>
         <Grid Name="GrdRelease" Grid.Column="1">
-            <Button Name="BtnReleaseReports" Content="Goto Release Reports" Click="BtnReleaseReports_Click" />
+            <Button Name="BtnReleaseReports" Content="Goto Release Reports" Click="BtnReleaseReports_Click" Foreground="Blue" />
         </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Label Content="Release:" />
+            <ComboBox Width="300" ItemsSource="{Binding Releases}" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2">
+            <DataGrid ItemsSource="{Binding ReportSummmaries}" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2">
+            <DataGrid ItemsSource="{Binding ReportSummmaries}" />
+        </StackPanel>
     </Grid>
 </Window>

@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8407161cd9774a86aa1f0fe785dd49a6" Name="Diagram1">
-        <EntityTypeShape EntityType="SmokeTestsAdoModel.Evaluator" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmokeTestsAdoModel.Release" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+      <Diagram DiagramId="8407161cd9774a86aa1f0fe785dd49a6" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="SmokeTestsAdoModel.Evaluator" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsAdoModel.Release" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SmokeTestsAdoModel.Report_Evaluation" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmokeTestsAdoModel.Report" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmokeTestsAdoModel.Section_Evaluation" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmokeTestsAdoModel.Section" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmokeTestsAdoModel.Status" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsAdoModel.Report" Width="1.5" PointX="9" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsAdoModel.Section_Evaluation" Width="1.5" PointX="12.875" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsAdoModel.Section" Width="1.5" PointX="16.375" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmokeTestsAdoModel.Status" Width="1.5" PointX="7.75" PointY="11.5" IsExpanded="true" />
         <AssociationConnector Association="SmokeTestsAdoModel.FK_Report_Evaluation_ToEvaluators" ManuallyRouted="false" />
         <AssociationConnector Association="SmokeTestsAdoModel.FK_Section_Evaluation_ToEvaluators" ManuallyRouted="false" />
         <AssociationConnector Association="SmokeTestsAdoModel.FK_Report_Evaluation_ToRelease" ManuallyRouted="false" />

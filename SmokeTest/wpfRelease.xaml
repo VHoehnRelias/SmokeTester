@@ -6,12 +6,11 @@
         xmlns:local="clr-namespace:SmokeTest"
         mc:Ignorable="d"
         Title="Release" Height="450" Width="800">
-    <Grid>
+    <Grid DataContext="{Binding TheRelease}">
         <Label Content="Date:" HorizontalAlignment="Left" Margin="264,32,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="333,36,0,0" TextWrapping="Wrap" Text="{Binding TheRelease.Date}" VerticalAlignment="Top" Width="120"/>
+        <DatePicker HorizontalAlignment="Left" Height="23" Margin="333,36,0,0" Text="{Binding Date}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Name:" HorizontalAlignment="Left" Margin="276,135,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="333,137,0,0" TextWrapping="Wrap" Text="{Binding TheRelease.Name}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="333,137,0,0"  Text="{Binding Name}" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="341,227,0,0" VerticalAlignment="Top" Width="75" Click="BtnCreate_Click"/>
-
     </Grid>
 </Window>
