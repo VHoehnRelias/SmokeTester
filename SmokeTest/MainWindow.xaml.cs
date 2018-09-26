@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Deployment.Internal;
+using System.Reflection;
 
 namespace SmokeTest
 {
@@ -22,6 +24,8 @@ namespace SmokeTest
         public MainWindow()
         {
             InitializeComponent();
+            var strVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            Title = string.Format("Smoking ({0})", strVersion);
         }
 
         private void BtnEditReports_Click(object sender, RoutedEventArgs e)
