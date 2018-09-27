@@ -234,6 +234,11 @@ namespace SmokeTest
             System.IO.File.WriteAllText(reportStatusPage, reportSource);
             System.IO.File.WriteAllText(sectionStatusPage, sectionSource);
 
+
+            Uri pageUriR = new Uri(reportStatusPage);
+            Uri pageUriS = new Uri(sectionStatusPage);
+            wbReports.Source = pageUriR;
+            wbSections.Source = pageUriS;
         }
 
         private void BtnEditReports_Click(object sender, RoutedEventArgs e)
