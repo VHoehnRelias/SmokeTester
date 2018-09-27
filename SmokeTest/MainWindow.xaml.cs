@@ -55,6 +55,7 @@ namespace SmokeTest
                 {
                     theRelease = value;
                     OnPropertyChanged("TheRelease");
+                    PopulateReportSummaries();
                 }
             }
         }
@@ -70,6 +71,21 @@ namespace SmokeTest
                 {
                     reportSummmaries = value;
                     OnPropertyChanged("ReportSummmaries");
+                }
+            }
+        }
+
+        private List<ReportSummmary> sectionSummmaries;
+
+        public List<ReportSummmary> SectionSummmaries
+        {
+            get { return sectionSummmaries; }
+            set
+            {
+                if (sectionSummmaries != value)
+                {
+                    sectionSummmaries = value;
+                    OnPropertyChanged("SectionSummmaries");
                 }
             }
         }
@@ -102,12 +118,34 @@ namespace SmokeTest
 
         private void PopulateReportSummaries()
         {
-            ReportSummmaries = new List<ReportSummmary>
+            List<Status> lstStatuses = ste.Status.ToList();
+            if (TheRelease != null)
             {
-                new ReportSummmary() { ReportType = "Good", TypeCount = 20 },
-                new ReportSummmary() { ReportType = "Bad", TypeCount = 15 },
-                new ReportSummmary() { ReportType = "Ugly", TypeCount = 5 }
-            };
+                var rs = new List<ReportSummmary>();                
+                foreach (Status s in lstStatuses)
+                {
+                    //new ReportSummmary() { Status = "Good", Count = 20 },
+                    var count = 0;
+                    try
+                    {
+                        var someStuff = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id & a.Status_ID == s.Id).ToList();
+                        count = someStuff.Count();
+                    }
+                    catch (Exception ex){ MessageBox.Show(ex.ToString()); }
+                    rs.Add(new ReportSummmary() { Status = s.Name, Count = count });
+                };
+                var ss = new List<ReportSummmary>();
+                foreach (Status s in lstStatuses)
+                {
+                    var count = 0;
+                    //new ReportSummmary() { Status = "Good", Count = 20 },
+                    var someStuff = ste.Section_Evaluations.Where(a => a.Release_ID == TheRelease.Id & a.Status_ID == s.Id).ToList();
+                    count = someStuff.Count();
+                    ss.Add(new ReportSummmary() { Status = s.Name, Count = count });
+                };
+                ReportSummmaries = rs;
+                SectionSummmaries = ss;
+            }
         }
 
         private void BtnEditReports_Click(object sender, RoutedEventArgs e)

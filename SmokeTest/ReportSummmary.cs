@@ -2,9 +2,9 @@
 {
     public class ReportSummmary
     {
-        public string ReportType { get; set; }
+        public string Status { get; set; }
 
-        public int TypeCount { get; set; }
+        public int Count { get; set; }
 
     }
 }

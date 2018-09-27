@@ -29,26 +29,38 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Name="GrdSettings" Grid.Column="0">
-            <Button Name="BtnEditReports" Content="Add and Edit Reports" Click="BtnEditReports_Click" Foreground="Red" />
+            <Button Name="BtnEditReports" Content="Add and Edit Reports" Click="BtnEditReports_Click" Foreground="Red" Margin="10" />
         </Grid>
-        <Grid Name="GrdRelease" Grid.Column="1">
-            <Button Name="BtnReleaseReports" Content="Goto Release Reports" Click="BtnReleaseReports_Click" Foreground="Blue" />
+        <Grid Name="GrdRelease" Grid.Column="1" >
+            <Button Name="BtnReleaseReports" Content="Goto Release Reports" Click="BtnReleaseReports_Click" Foreground="Blue" Margin="10" />
         </Grid>
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10" >
             <Label Content="Release:" />
             <ComboBox Width="300" ItemsSource="{Binding Releases}" DisplayMemberPath="Name" 
                       SelectedValue="{Binding TheRelease, Mode=TwoWay}" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2">
-            <DataGrid ItemsSource="{Binding ReportSummmaries}" />
+            <Label Content="Reports" HorizontalAlignment="Center" />
+            <DataGrid ItemsSource="{Binding ReportSummmaries}" Margin="10" HorizontalAlignment="Center" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                    <DataGridTextColumn Header="Count" Binding="{Binding Count}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2">
-            <DataGrid ItemsSource="{Binding ReportSummmaries}" />
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch">
+            <Label Content="Sections" HorizontalAlignment="Center" />
+            <DataGrid ItemsSource="{Binding SectionSummmaries}" Margin="10" HorizontalAlignment="Center" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                    <DataGridTextColumn Header="Count" Binding="{Binding Count}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Window>

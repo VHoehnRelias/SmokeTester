@@ -19,7 +19,7 @@ namespace SmokeTest
     /// <summary>
     /// Interaction logic for wpfRelease.xaml
     /// </summary>
-    public partial class wpfRelease : Window, INotifyPropertyChanged
+    public partial class WpfRelease : Window, INotifyPropertyChanged
     {
         private SmokeTestsEntitiesNew stm;
 
@@ -40,16 +40,22 @@ namespace SmokeTest
                 {
                     theRelease = value;
                     OnPropertyChanged("TheRelease");
+                    UpdateCharts();
                 }
             }
         }
 
-        public wpfRelease()
+        public WpfRelease()
         {
             InitializeComponent();
             DataContext = this;
             stm = new SmokeTestsEntitiesNew();
             theRelease = new Release();
+        }
+
+        private void UpdateCharts()
+        {
+            throw new NotImplementedException();
         }
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)

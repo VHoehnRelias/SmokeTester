@@ -52,7 +52,7 @@ namespace SmokeTest
         private void BtnNewRelease_Click(object sender, RoutedEventArgs e)
         {
             //Add data for new release
-            var newRelease = new wpfRelease();
+            var newRelease = new WpfRelease();
             newRelease.Show();
         }
 

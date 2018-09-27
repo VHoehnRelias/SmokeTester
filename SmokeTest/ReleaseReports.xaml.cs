@@ -37,7 +37,7 @@ namespace SmokeTest
                 }
             }
         }
-        
+
         private List<Report_Evaluation> theReports;
 
         public List<Report_Evaluation> TheReports
@@ -83,12 +83,44 @@ namespace SmokeTest
             }
         }
 
+        private Status theStatus;
+
+        public Status TheStatus
+        {
+            get { return theStatus; }
+            set
+            {
+                if (theStatus != value)
+                {
+                    theStatus = value;
+                    OnPropertyChanged("TheStatus");
+                    LoadReportForStatus();
+                }
+            }
+        }
+
+        private Evaluator theEvaluator;
+
+        public Evaluator TheEvaluator
+        {
+            get { return theEvaluator; }
+            set
+            {
+                if (theEvaluator != value)
+                {
+                    theEvaluator = value;
+                    OnPropertyChanged("TheEvaluator");
+                    LoadReportForEvaluators();
+                }
+            }
+        }
+        
         public ReleaseReports(Release theRelease)
         {
             InitializeComponent();
             DataContext = this;
-            TheRelease = theRelease;
             ste = new SmokeTestsEntitiesNew();
+            TheRelease = theRelease;
             LoadData();
         }
 
@@ -121,6 +153,28 @@ namespace SmokeTest
         private void LoadReports()
         {
             TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id).ToList();
+        }
+        private void LoadReportForStatus()
+        {  
+            if (theStatus.Name == "☺")
+            {
+                TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id).ToList();
+            }
+            else
+            {
+                TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id && a.Status_ID == TheStatus.Id).ToList();
+            }
+        }
+        private void LoadReportForEvaluators()
+        {
+            if (theStatus.Name == " ")
+            {
+                TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id).ToList();
+            }
+            else
+            {
+                TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id && a.Evaluator_ID == TheEvaluator.Id).ToList();
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
