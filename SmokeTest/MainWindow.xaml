@@ -46,7 +46,7 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2">
             <Label Content="Reports" HorizontalAlignment="Center" />
-            <DataGrid ItemsSource="{Binding ReportSummmaries}" Margin="10" HorizontalAlignment="Center" AutoGenerateColumns="False" >
+            <DataGrid Name="DgReports" ItemsSource="{Binding ReportSummmaries}" Margin="10" HorizontalAlignment="Center" AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
                     <DataGridTextColumn Header="Count" Binding="{Binding Count}"/>
@@ -55,7 +55,7 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch">
             <Label Content="Sections" HorizontalAlignment="Center" />
-            <DataGrid ItemsSource="{Binding SectionSummmaries}" Margin="10" HorizontalAlignment="Center" AutoGenerateColumns="False" >
+            <DataGrid Name="DgSections" ItemsSource="{Binding SectionSummmaries}" Margin="10" HorizontalAlignment="Center" AutoGenerateColumns="False" DataGridRow.Selected="DgSections_Selected" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
                     <DataGridTextColumn Header="Count" Binding="{Binding Count}"/>

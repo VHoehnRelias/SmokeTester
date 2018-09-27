@@ -109,8 +109,16 @@ namespace SmokeTest
             ste = new SmokeTestsEntitiesNew();
             Title = string.Format("Smoking ({0})", CurrentVersion);
             Releases = GetReleases();
+            TheRelease = GetCurrentRelease();
             PopulateReportSummaries();
         }
+
+        private Release GetCurrentRelease()
+        {
+            Release rel = Releases.Last();
+            return rel;
+        }
+
         private List<Release> GetReleases()
         {
             var lst = ste.Releases.ToList();
@@ -160,5 +168,18 @@ namespace SmokeTest
             var frm = new ReleaseReports(TheRelease);
             frm.Show();
         }
+
+        private void DgReports_Selected(object sender, RoutedEventArgs e)
+        {
+            var frm = new ReleaseReports(TheRelease);
+            frm.Show();
+        }
+
+        private void DgSections_Selected(object sender, RoutedEventArgs e)
+        {
+            var frm = new ReleaseSectionsAll(TheRelease);
+            frm.Show();
+        }
+
     }
 }
