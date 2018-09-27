@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="WebViewer" Height="450" Width="800">
     <Grid>
-        <WebBrowser x:Name="webViewer" Margin="10,114,9.6,10"/>
+        <WebBrowser x:Name="webViewer" Margin="10,114,9.6,10" />
 
     </Grid>
 </Window>

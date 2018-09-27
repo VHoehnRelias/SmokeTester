@@ -35,7 +35,13 @@ namespace SmokeTest
                 if (webPage != value)
                 {
                     webPage = value;
-                    webViewer.Source = new Uri(webPage);
+                    //webViewer.Source = new Uri(webPage);
+                    string appDir = Environment.CurrentDirectory;
+                    int post = appDir.LastIndexOf("bin\\Debug");
+                    string strDir = appDir.Remove(post);
+                    Uri pageUri = new Uri(strDir + webPage);
+                    //Uri pageUri = new Uri(@"C:\Users\VHoehn\Desktop\Smoken.html");
+                    webViewer.Source = pageUri;
                 }
             }
         }

@@ -212,7 +212,7 @@ namespace SmokeTest
             var vwr = new WebViewer
             {
                 //WebPage = "https://relias.atlassian.net/browse/KALAMATA-248"
-                WebPage = "http://new.vhoehn.com"
+                WebPage = "HTMLPage1.html"
             };
             vwr.Show();
         }
