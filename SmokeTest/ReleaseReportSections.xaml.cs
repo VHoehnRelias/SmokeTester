@@ -138,7 +138,7 @@ namespace SmokeTest
             {
                 //WebPage = "https://www.cmtanalytics.com/AnalyticsView.aspx"
                 //WebPage = "http://new.vhoehn.com/Tools/ValStuff.htm"
-                WebPage = "ReportsView.html"
+                WebPage = "SectionsView.html"
             };
             vwr.Show();
         }
