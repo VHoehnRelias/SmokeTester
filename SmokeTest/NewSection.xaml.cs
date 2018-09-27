@@ -23,6 +23,21 @@ namespace SmokeTest
     {
         private SmokeTestsEntitiesNew ste;
 
+        private string stringLabel = "Ready";
+
+        public string StringLabel
+        {
+            get { return stringLabel; }
+            set
+            {
+                if (stringLabel != value)
+                {
+                    stringLabel = value;
+                    OnPropertyChanged("StringLabel");
+                }
+            }
+        }
+
         private Report theReport;
 
         public Report TheReport
@@ -77,8 +92,13 @@ namespace SmokeTest
         {
             ste.Sections.Add(TheSection);
             ste.SaveChanges();
+            StringLabel = "Saved Successfully";
             formParent.UpdateSections();
             //formParent.DgReport.Items.Refresh();
+        }
+        private void BtnSave_LostFoucs(object sender, RoutedEventArgs e)
+        {
+            StringLabel = "Ready";
         }
     }
 }

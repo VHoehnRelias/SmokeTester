@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,21 @@ namespace SmokeTest
     public partial class ReleaseReports : Window, INotifyPropertyChanged
     {
         private SmokeTestsEntitiesNew ste;
+
+        private string stringLabel = "Ready";
+
+        public string StringLabel
+        {
+            get { return stringLabel; }
+            set
+            {
+                if (stringLabel != value)
+                {
+                    stringLabel = value;
+                    OnPropertyChanged("StringLabel");
+                }
+            }
+        }
 
         private Release theRelease;
 
@@ -220,7 +236,14 @@ namespace SmokeTest
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+            
             ste.SaveChanges();
+            StringLabel = "Saved Successfully";
+        }
+
+        private void BtnSave_LostFoucs(object sender, RoutedEventArgs e)
+        {
+            StringLabel = "Ready";
         }
     }
 }

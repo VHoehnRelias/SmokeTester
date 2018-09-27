@@ -24,6 +24,7 @@
         <Label Content="Description:" Grid.Column="0" Grid.Row="2"/>
         <TextBox Text="{Binding Path=TheSection.Description}" Grid.Column="1" Grid.Row="2"/>
 
-        <Button Name="BtnSave" Content="Save" Grid.Column="1" Grid.Row="4" Height="35" Width="100" VerticalAlignment="Top" Click="BtnSave_Click"/>
+        <Button Name="BtnSave" Content="Save" Grid.Column="1" Grid.Row="4" Height="35" Width="100" VerticalAlignment="Top" Click="BtnSave_Click" LostFocus="BtnSave_LostFoucs"/>
+        <Label Content="{Binding StringLabel}" Foreground="Red"  HorizontalContentAlignment="Center" VerticalContentAlignment="center" Grid.Column="1" HorizontalAlignment="Center"  Margin="113.6,58,127.2,0" Grid.Row="4" VerticalAlignment="Top" Height="58" Width="156"/>
     </Grid>
 </Window>
