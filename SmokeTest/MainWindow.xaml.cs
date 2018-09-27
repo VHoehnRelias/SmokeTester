@@ -100,6 +100,7 @@ namespace SmokeTest
         {
             InitializeComponent();
             DataContext = this;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             //Assembly ass = Assembly.GetExecutingAssembly();
             //FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(ass.Location);
             //var ver = Assembly.GetExecutingAssembly().GetName().Version;

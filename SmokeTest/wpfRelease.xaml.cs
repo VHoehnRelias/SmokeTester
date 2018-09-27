@@ -47,6 +47,7 @@ namespace SmokeTest
         public WpfRelease()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
             stm = new SmokeTestsEntitiesNew();
             theRelease = new Release();

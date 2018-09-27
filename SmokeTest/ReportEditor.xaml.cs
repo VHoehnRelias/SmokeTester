@@ -39,6 +39,7 @@ namespace SmokeTest
         public ReportEditor()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
             ste = new SmokeTestsEntitiesNew();
             PopulateTheReports();

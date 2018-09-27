@@ -57,6 +57,7 @@ namespace SmokeTest
         public NewSection(Report theReport)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
             ste = new SmokeTestsEntitiesNew();
             TheSection = new SmokeTestDBClassLibrary.Section

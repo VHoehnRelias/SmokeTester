@@ -34,7 +34,7 @@ namespace SmokeTest
         {
             InitializeComponent();
             DataContext = this;
-            
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

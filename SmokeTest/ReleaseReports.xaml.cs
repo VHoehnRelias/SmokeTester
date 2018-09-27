@@ -118,6 +118,7 @@ namespace SmokeTest
         public ReleaseReports(Release theRelease)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
             ste = new SmokeTestsEntitiesNew();
             TheRelease = theRelease;

@@ -52,6 +52,7 @@ namespace SmokeTest
         {
             InitializeComponent();
             DataContext = this;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         private void UpdateGrid()

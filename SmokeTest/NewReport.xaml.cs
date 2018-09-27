@@ -79,6 +79,7 @@ namespace SmokeTest
         public NewReport(Report theReport)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
             ste = new SmokeTestsEntitiesNew();
             TheReport = theReport;
