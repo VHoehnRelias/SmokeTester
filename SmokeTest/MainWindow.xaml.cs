@@ -16,6 +16,8 @@ using System.Reflection;
 using System.Diagnostics;
 using System.ComponentModel;
 using SmokeTestDBClassLibrary;
+using System.IO;
+using System.Xml;
 
 namespace SmokeTest
 {
@@ -67,7 +69,7 @@ namespace SmokeTest
             get { return reportSummmaries; }
             set
             {
-                if(reportSummmaries != value)
+                if (reportSummmaries != value)
                 {
                     reportSummmaries = value;
                     OnPropertyChanged("ReportSummmaries");
@@ -119,10 +121,25 @@ namespace SmokeTest
 
         private void PopulateReportSummaries()
         {
+            var dateString = "2018, 9, 26";
+            var goodReport = "";
+            var badReport = "";
+            var uglyReport = "";
+            var untestedReport = "";
+            var goodSection = "";
+            var badSection = "";
+            var uglySection = "";
+            var untestedSection = "";
+
             List<Status> lstStatuses = ste.Status.ToList();
             if (TheRelease != null)
             {
-                var rs = new List<ReportSummmary>();                
+                if (TheRelease.Date != null)
+                {
+                    dateString = TheRelease.Date.Value.Year.ToString() + ", " + TheRelease.Date.Value.Month.ToString() + ", " + TheRelease.Date.Value.Day.ToString();
+                }
+
+                var rs = new List<ReportSummmary>();
                 foreach (Status s in lstStatuses)
                 {
                     //new ReportSummmary() { Status = "Good", Count = 20 },
@@ -132,8 +149,25 @@ namespace SmokeTest
                         var someStuff = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id & a.Status_ID == s.Id).ToList();
                         count = someStuff.Count();
                     }
-                    catch (Exception ex){ MessageBox.Show(ex.ToString()); }
+                    catch (Exception ex) { MessageBox.Show(ex.ToString()); }
                     rs.Add(new ReportSummmary() { Status = s.Name, Count = count });
+
+                    if (s.Id == 1)
+                    {
+                        untestedReport = count.ToString();
+                    }
+                    else if (s.Id == 2)
+                    {
+                        goodReport = count.ToString();
+                    }
+                    else if (s.Id == 3)
+                    {
+                        badReport = count.ToString();
+                    }
+                    else if (s.Id == 4)
+                    {
+                        uglyReport = count.ToString();
+                    }
                 };
                 var ss = new List<ReportSummmary>();
                 foreach (Status s in lstStatuses)
@@ -143,10 +177,55 @@ namespace SmokeTest
                     var someStuff = ste.Section_Evaluations.Where(a => a.Release_ID == TheRelease.Id & a.Status_ID == s.Id).ToList();
                     count = someStuff.Count();
                     ss.Add(new ReportSummmary() { Status = s.Name, Count = count });
+
+                    if (s.Id == 1)
+                    {
+                        untestedSection = count.ToString();
+                    }
+                    else if (s.Id == 2)
+                    {
+                        goodSection = count.ToString();
+                    }
+                    else if (s.Id == 3)
+                    {
+                        badSection = count.ToString();
+                    }
+                    else if (s.Id == 4)
+                    {
+                        uglySection = count.ToString();
+                    }
                 };
                 ReportSummmaries = rs;
                 SectionSummmaries = ss;
             }
+
+            string appDir = Environment.CurrentDirectory;
+            int post = appDir.LastIndexOf("bin\\Debug");
+            string strDir = appDir.Remove(post);
+            string templatePageLink = strDir + "StatusTemplate.html";
+            string reportStatusPage = strDir + "ReportStatus.html";
+            string sectionStatusPage = strDir + "SectionStatus.html";
+            string pageSource = System.IO.File.ReadAllText(templatePageLink);
+            string reportSource = "";
+            string sectionSource = "";
+
+            // Report Status
+            reportSource = pageSource.Replace("@Date", dateString);
+            reportSource = reportSource.Replace("@Good", goodReport);
+            reportSource = reportSource.Replace("@Bad", badReport);
+            reportSource = reportSource.Replace("@Ugly", uglyReport);
+            reportSource = reportSource.Replace("@Untested", untestedReport);
+
+            // Section Status
+            sectionSource = pageSource.Replace("@Date", dateString);
+            sectionSource = sectionSource.Replace("@Good", goodSection);
+            sectionSource = sectionSource.Replace("@Bad", badSection);
+            sectionSource = sectionSource.Replace("@Ugly", uglySection);
+            sectionSource = sectionSource.Replace("@Untested", untestedSection);
+
+            System.IO.File.WriteAllText(reportStatusPage, reportSource);
+            System.IO.File.WriteAllText(sectionStatusPage, sectionSource);
+
         }
 
         private void BtnEditReports_Click(object sender, RoutedEventArgs e)
@@ -160,5 +239,24 @@ namespace SmokeTest
             var frm = new ReleaseReports(TheRelease);
             frm.Show();
         }
+
+        private void BtnView_Click_Report(object sender, RoutedEventArgs e)
+        {
+            var vwr = new WebViewer
+            {
+                WebPage = "ReportStatus.html"
+            };
+            vwr.Show();
+        }
+
+        private void BtnView_Click_Section(object sender, RoutedEventArgs e)
+        {
+            var vwr = new WebViewer
+            {
+                WebPage = "SectionStatus.html"
+            };
+            vwr.Show();
+        }
+
     }
 }
