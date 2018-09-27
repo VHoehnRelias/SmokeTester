@@ -229,7 +229,7 @@ namespace SmokeTest
             var vwr = new WebViewer
             {
                 //WebPage = "https://relias.atlassian.net/browse/KALAMATA-248"
-                WebPage = "HTMLPage1.html"
+                WebPage = "ReportStatus.html"
             };
             vwr.Show();
         }
