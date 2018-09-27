@@ -1,0 +1,29 @@
+﻿<Window x:Class="SmokeTest.NewSection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmokeTest"
+        mc:Ignorable="d"
+        Title="New Section" Height="450" Width="800">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Section:" Grid.Column="0" Grid.Row="1"/>
+        <TextBox Text="{Binding TheSection.Section1}" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="Description:" Grid.Column="0" Grid.Row="2"/>
+        <TextBox Text="{Binding Path=TheSection.Description}" Grid.Column="1" Grid.Row="2"/>
+
+        <Button Name="BtnSave" Content="Save" Grid.Column="1" Grid.Row="4" Height="35" Width="100" VerticalAlignment="Top" Click="BtnSave_Click"/>
+    </Grid>
+</Window>

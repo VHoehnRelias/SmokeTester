@@ -5,14 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmokeTest"
         mc:Ignorable="d"
-        Title="NewReport" Height="450" Width="800">
+        Title="New Report" Height="450" Width="800">
     <Grid>
-        <Label Content="Report Name:" HorizontalAlignment="Left" Margin="122,101,0,0" VerticalAlignment="Top"/>
-        <Label Content="File Name:" HorizontalAlignment="Left" Margin="122,186,0,0" VerticalAlignment="Top"/>
-        <Label Content="Left Navigation Menu Location: " HorizontalAlignment="Left" Margin="122,252,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="333,101,0,0" TextWrapping="Wrap" Text="{Binding Report_Name}" VerticalAlignment="Top" Width="270"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="333,186,0,0" TextWrapping="Wrap" Text="{Binding File_Name}" VerticalAlignment="Top" Width="270"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="333,255,0,0" TextWrapping="Wrap" Text="{Binding Left_Navigation_Menu_location}" VerticalAlignment="Top" Width="270"/>
-
+        <Grid Margin="15" Height="100" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition  />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="35">
+                <Label Content="Report:     " FontWeight="Light" />
+                <TextBox x:Name="lblReportFile" Text="{Binding TheReport.Report_Name}" Margin="0,0,0,0.2" Width="400" >
+                </TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="30">
+                <Label Content="File Name: "  FontWeight="Light" />
+                <TextBox x:Name="lblReportName" Text="{Binding TheReport.File_Name}" Margin="0,0,0,0.2" Width="400" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="30">
+                <Label Content="Navigation:" FontWeight="Light" />
+                <TextBox x:Name="lblReportNavi" Text="{Binding TheReport.Left_Navigation_Menu_location}" Margin="0,0,0,0.4" Width="429" />
+            </StackPanel>
+            <Button Grid.Column="1" Grid.Row="0" x:Name="BtnSave" Content="Save" Margin="10,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnSave_Click"/>
+            <Button Grid.Column="1" Grid.Row="1" x:Name="BtnAdd" Content="Add Sections" Margin="10,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnAdd_Click"/>
+            <Button Grid.Column="1" Grid.Row="2" x:Name="BtnDelete" Content="Delete Report" Margin="10,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnDelete_Click"/>
+            <!--<Button x:Name="BtnView" Content="View" Margin="10,100,0,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnView_Click"/>-->
+        </Grid>
+        <DataGrid x:Name="DgReport" Margin="10,140,9.6,10" ItemsSource="{Binding ReportSections}" AutoGenerateColumns="False">
+            <DataGrid.AlternatingRowBackground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF6F7F7" Offset="0"/>
+                    <GradientStop Color="#FF96E4E5" Offset="1"/>
+                </LinearGradientBrush>
+            </DataGrid.AlternatingRowBackground>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Section" Binding="{Binding Section1}" Width="300" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="400" />
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Name="BtnDeleteSection" Click="BtnDeleteSection_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

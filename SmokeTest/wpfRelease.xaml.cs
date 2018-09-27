@@ -40,7 +40,6 @@ namespace SmokeTest
                 {
                     theRelease = value;
                     OnPropertyChanged("TheRelease");
-                    UpdateCharts();
                 }
             }
         }
@@ -53,11 +52,6 @@ namespace SmokeTest
             theRelease = new Release();
         }
 
-        private void UpdateCharts()
-        {
-            throw new NotImplementedException();
-        }
-
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
             if (TheRelease.Id != 0)
@@ -66,6 +60,7 @@ namespace SmokeTest
             }
             else
             {
+                //int newID = stm.Releases.Add(TheRelease).Id;
                 stm.Releases.Add(TheRelease);
                 AddToReportEvaluations();
                 AddToSectionEvaluations();
@@ -81,7 +76,8 @@ namespace SmokeTest
                 {
                     Release_ID = TheRelease.Id,
                     Report_ID = rpt.Id,
-                    Evaluator_ID = 1
+                    Evaluator_ID = 1,
+                    Status_ID = 1
                 };
                 stm.Report_Evaluations.Add(re);
             }
@@ -97,7 +93,8 @@ namespace SmokeTest
                     Release_ID = TheRelease.Id,
                     Section_ID = sct.Id,
                     Report_ID = sct.Report_ID,
-                    Evaluator_ID = 1
+                    Evaluator_ID = 1,
+                    Status_ID = 1
                 };
                 stm.Section_Evaluations.Add(re);
             }

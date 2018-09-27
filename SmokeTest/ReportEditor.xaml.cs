@@ -15,13 +15,13 @@ namespace SmokeTest
     {
         private SmokeTestsEntitiesNew ste;
 
-        private List<Report> theReports;
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private List<Report> theReports;
 
         public List<Report> TheReports
         {
@@ -82,10 +82,7 @@ namespace SmokeTest
                 //var itm = (SmokeTestDBClassLibrary.Report)g.SelectedItem;
                 var id = (int)g.Tag;
                 var itm = TheReports.Single(a => a.Id == id);
-                var report = new WpfReport
-                {
-                    TheReport = itm
-                };
+                var report = new NewReport(itm);
                 report.Show();
             }
             catch (Exception ex)
@@ -96,7 +93,7 @@ namespace SmokeTest
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            var newRpt = new NewReport();
+            var newRpt = new NewReport(new Report());
             newRpt.Show();
         }
     }

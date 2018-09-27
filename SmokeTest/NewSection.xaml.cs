@@ -1,0 +1,83 @@
+﻿using SmokeTestDBClassLibrary;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace SmokeTest
+{
+    /// <summary>
+    /// Interaction logic for NewSection.xaml
+    /// </summary>
+    public partial class NewSection : Window, INotifyPropertyChanged
+    {
+        private SmokeTestsEntitiesNew ste;
+
+        private Report theReport;
+
+        public Report TheReport
+        {
+            get { return theReport; }
+            set
+            {
+                if(theReport != value)
+                {
+                    theReport = value;
+                }
+            }
+        }
+
+        private NewReport formParent;
+
+        public NewReport FormParent
+        {
+            get { return formParent; }
+            set { formParent = value; }
+        }
+
+        private SmokeTestDBClassLibrary.Section theSection;
+
+        public SmokeTestDBClassLibrary.Section TheSection
+        {
+            get { return theSection; }
+            set { theSection = value; }
+        }
+
+
+        public NewSection(Report theReport)
+        {
+            InitializeComponent();
+            DataContext = this;
+            ste = new SmokeTestsEntitiesNew();
+            TheSection = new SmokeTestDBClassLibrary.Section
+            {
+                Report_ID = theReport.Id
+            };
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            ste.Sections.Add(TheSection);
+            ste.SaveChanges();
+            formParent.UpdateSections();
+            //formParent.DgReport.Items.Refresh();
+        }
+    }
+}

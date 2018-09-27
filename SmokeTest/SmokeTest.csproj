@@ -110,6 +110,9 @@
     <Compile Include="NewReport.xaml.cs">
       <DependentUpon>NewReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewSection.xaml.cs">
+      <DependentUpon>NewSection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReleaseReports.xaml.cs">
       <DependentUpon>ReleaseReports.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,10 @@
       <DependentUpon>wpfRelease.xaml</DependentUpon>
     </Compile>
     <Page Include="BasicStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewSection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
