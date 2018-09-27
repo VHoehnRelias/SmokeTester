@@ -137,7 +137,8 @@ namespace SmokeTest
             var vwr = new WebViewer
             {
                 //WebPage = "https://www.cmtanalytics.com/AnalyticsView.aspx"
-                WebPage = "http://new.vhoehn.com/Tools/ValStuff.htm"
+                //WebPage = "http://new.vhoehn.com/Tools/ValStuff.htm"
+                WebPage = "ReportStatus.html"
             };
             vwr.Show();
         }

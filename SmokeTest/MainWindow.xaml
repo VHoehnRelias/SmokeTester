@@ -52,7 +52,7 @@
                     <DataGridTextColumn Header="Count" Binding="{Binding Count}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <WebBrowser Name="wbReports" Margin="0,0,-0.2,0"/>
+            <WebBrowser Name="wbReports" Height="350" Margin="0,0,-0.2,0"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch">
             <Label Content="Sections" HorizontalAlignment="Center" />
@@ -63,7 +63,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0"/>
-            <WebBrowser Name="wbSections" Margin="0,0,-0.2,0"/>
+            <WebBrowser Name="wbSections" Height="350" Margin="0,0,-0.2,0"/>
         </StackPanel>
     </Grid>
 </Window>
