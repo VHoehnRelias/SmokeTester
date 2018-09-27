@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <script type="text/javascript">
+      window.onload = function () {
+
+        CanvasJS.addColorSet("colors",
+            [
+
+                "green",
+                "yellow",
+                "red",
+                "gray"
+            ]);
+    var chart = new CanvasJS.Chart("chartContainer",
+        {
+      colorSet: "colors",
+      title:{
+      text: "Report Status"
+      },
+
+      data: [
+      {
+        type: "stackedBar",
+         dataPoints: [
+        { x: new Date(@Date), y: @Good }
+
+        ]
+      },
+        {
+        type: "stackedBar",
+         dataPoints: [
+              { x: new Date(@Date), y: @Bad }
+
+        ]
+      },
+        {
+        type: "stackedBar",
+         dataPoints: [
+              { x: new Date(@Date), y: @Ugly }
+
+        ]
+      },
+
+        {
+        type: "stackedBar",
+         dataPoints: [
+              { x: new Date(@Date), y: @Untested }
+
+        ]
+      }
+
+      ]
+    });
+
+    chart.render();
+  }
+  </script>
+ <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script></head>
+<body>
+  <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div>
+</body>
+</html>
