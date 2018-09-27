@@ -253,6 +253,7 @@
     <Content Include="ReportStatus.html" />
     <Content Include="SectionStatus.html" />
     <Content Include="StatusTemplate.html" />
+	<Content Include="ReportsView.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
