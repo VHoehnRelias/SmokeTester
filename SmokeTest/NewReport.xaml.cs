@@ -54,6 +54,21 @@ namespace SmokeTest
             }
         }
 
+        private SmokeTestDBClassLibrary.Section selectedSection;
+
+        public SmokeTestDBClassLibrary.Section SelectedSection
+        {
+            get { return selectedSection; }
+            set
+            {
+                if(selectedSection != value)
+                {
+                    selectedSection = value;
+                    OnPropertyChanged("SelectedSection");
+                }
+            }
+        }
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string propertyName)
@@ -105,7 +120,7 @@ namespace SmokeTest
 
         private void BtnDeleteSection_Click(object sender, RoutedEventArgs e)
         {
-
+            ste.Sections.Remove(SelectedSection);
         }
     }
 }
