@@ -112,12 +112,12 @@ namespace SmokeTest
             Title = string.Format("Smoking ({0})", CurrentVersion);
             Releases = GetReleases();
             TheRelease = GetCurrentRelease();
-            PopulateReportSummaries();
+            //PopulateReportSummaries();
         }
 
         private Release GetCurrentRelease()
         {
-            Release rel = Releases.Last();
+            Release rel = Releases.First();
             return rel;
         }
 
