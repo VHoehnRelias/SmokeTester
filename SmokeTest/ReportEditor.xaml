@@ -21,11 +21,12 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="245,0,53,-0.2" Width="726">
             <Button x:Name="btnNewRelease" Content="Create New Release" Click="BtnNewRelease_Click" />
             <Button x:Name="btnReports" Content="Go To Release Reports"  Click="BtnReports_Click" />
             <Button x:Name="BtnAdd" Content="Add New Report" Click="BtnAdd_Click" />
-            <Button x:Name="BtnSave" Content="Save" Click="BtnSave_Click" />
+            <Button x:Name="BtnSave" Content="Save" Click="BtnSave_Click" LostFocus="BtnSave_LostFoucs"/>
+            <Label Content="{Binding StringLabel}" Margin="0,0,0,680.8" Foreground="Red" Width="224"/>
         </StackPanel>
         <DataGrid x:Name="dgSummary" Margin="10,78,9.6,10" ItemsSource="{Binding TheReports}" AutoGenerateColumns="False">
             <DataGrid.Columns>

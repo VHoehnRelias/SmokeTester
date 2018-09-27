@@ -38,8 +38,9 @@
                     <Label x:Name="lblReportNavi" Content="{Binding TheReport.Report.Left_Navigation_Menu_location}" Margin="0,0,0,0.2" Width="400" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Label Content="{Binding StringLabel}" Height="40" VerticalAlignment="Bottom" Foreground="Red"/>
                     <Button x:Name="BtnView" Content="View" Margin="10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="25" Width="75" FontSize="12" FontWeight="Bold" Click="BtnView_Click"/>
-                    <Button x:Name="BtnSave" Content="Save" Margin="10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="25" Width="75" FontSize="12" FontWeight="Bold" Click="BtnSave_Click"/>
+                    <Button x:Name="BtnSave" Content="Save" Margin="10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="25" Width="75" FontSize="12" FontWeight="Bold" Click="BtnSave_Click" LostFocus="BtnSave_LostFoucs"/>
                 </StackPanel>
             </StackPanel>    
         </Grid>

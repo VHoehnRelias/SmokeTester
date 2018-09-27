@@ -23,6 +23,21 @@ namespace SmokeTest
     {
         private SmokeTestsEntitiesNew ste;
 
+        private string stringLabel = "Ready";
+
+        public string StringLabel
+        {
+            get { return stringLabel; }
+            set
+            {
+                if (stringLabel != value)
+                {
+                    stringLabel = value;
+                    OnPropertyChanged("StringLabel");
+                }
+            }
+        }
+
         private Report theReport = new Report();
 
         public Report TheReport
@@ -96,8 +111,21 @@ namespace SmokeTest
             if (TheReport != null)
             {
                 ste.Reports.Add(TheReport);
-                ste.SaveChanges();
+                if(TheReport.File_Name != null && TheReport.Left_Navigation_Menu_location != null && TheReport.Report_Name != null)
+                {
+                    ste.SaveChanges();
+                    StringLabel = "Saved Successfully";
+                } else
+                {
+                    StringLabel = "Can't be blank";
+                }
+                
             }
+        }
+
+        private void BtnSave_LostFoucs(object sender, RoutedEventArgs e)
+        {
+            StringLabel = "Ready";
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

@@ -21,6 +21,7 @@
                 <Label Content="Report:     " FontWeight="Light" />
                 <TextBox x:Name="lblReportFile" Text="{Binding TheReport.Report_Name}" Margin="0,0,0,0.2" Width="400" >
                 </TextBox>
+                <Label Content="{Binding StringLabel}" Foreground="Red" Margin="0,0,0,0.2" Width="103"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="30">
                 <Label Content="File Name: "  FontWeight="Light" />
@@ -30,7 +31,7 @@
                 <Label Content="Navigation:" FontWeight="Light" />
                 <TextBox x:Name="lblReportNavi" Text="{Binding TheReport.Left_Navigation_Menu_location}" Margin="0,0,0,0.4" Width="429" />
             </StackPanel>
-            <Button Grid.Column="1" Grid.Row="0" x:Name="BtnSave" Content="Save" Margin="10,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnSave_Click"/>
+            <Button Grid.Column="1" Grid.Row="0" x:Name="BtnSave" Content="Save" Margin="10,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnSave_Click" LostFocus="BtnSave_LostFoucs"/>
             <Button Grid.Column="1" Grid.Row="1" x:Name="BtnAdd" Content="Add Sections" Margin="10,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnAdd_Click"/>
             <Button Grid.Column="1" Grid.Row="2" x:Name="BtnDelete" Content="Delete Report" Margin="10,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnDelete_Click"/>
             <!--<Button x:Name="BtnView" Content="View" Margin="10,100,0,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnView_Click"/>-->
