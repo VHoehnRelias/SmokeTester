@@ -7,21 +7,7 @@
         mc:Ignorable="d"
         Title="Smoking" Height="850" Width="1000">
     <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="BasicStyle.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="Button">
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="VerticalAlignment" Value="Top" />
-                <Setter Property="Padding" Value="5"/>
-            </Style>
-            <Style TargetType="DataGrid">
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-            </Style>
-        </ResourceDictionary>
+
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -52,7 +38,7 @@
                     <DataGridTextColumn Header="Count" Binding="{Binding Count}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <WebBrowser Name="wbReports" Margin="0,0,-0.2,0"/>
+            <WebBrowser Name="wbReports" Margin="0" Height="320"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch">
             <Label Content="Sections" HorizontalAlignment="Center" />
@@ -63,7 +49,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0"/>
-            <WebBrowser Name="wbSections" Margin="0,0,-0.2,0"/>
+            <WebBrowser Name="wbSections" Margin="0" Height="320"/>
         </StackPanel>
     </Grid>
 </Window>

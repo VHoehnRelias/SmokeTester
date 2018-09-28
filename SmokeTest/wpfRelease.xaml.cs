@@ -21,7 +21,7 @@ namespace SmokeTest
     /// </summary>
     public partial class WpfRelease : Window, INotifyPropertyChanged
     {
-        private SmokeTestsEntitiesNew stm;
+        private SmokeTestsEntities stm;
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
@@ -49,7 +49,7 @@ namespace SmokeTest
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
-            stm = new SmokeTestsEntitiesNew();
+            stm = new SmokeTestsEntities();
             theRelease = new Release();
         }
 
@@ -61,10 +61,13 @@ namespace SmokeTest
             }
             else
             {
+                Cursor = Cursors.Wait;
                 //int newID = stm.Releases.Add(TheRelease).Id;
                 stm.Releases.Add(TheRelease);
                 AddToReportEvaluations();
                 AddToSectionEvaluations();
+                Cursor = Cursors.Arrow;
+                this.Close();
             }
         }
 

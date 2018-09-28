@@ -57,7 +57,7 @@ namespace SmokeTest
 
         private void UpdateGrid()
         {
-            var dbr = new SmokeTestsEntitiesNew();
+            var dbr = new SmokeTestsEntities();
             var dset = dbr.Sections.Where(a => a.Report_ID == TheReport.Id);
             ReportSections = dset.ToList();
             //DgReport.ItemsSource = ReportSections;

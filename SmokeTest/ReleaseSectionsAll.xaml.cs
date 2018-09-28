@@ -21,7 +21,7 @@ namespace SmokeTest
     /// </summary>
     public partial class ReleaseSectionsAll : Window, INotifyPropertyChanged
     {
-        private SmokeTestsEntitiesNew ste;
+        private SmokeTestsEntities ste;
 
         private Release theRelease;
 
@@ -90,7 +90,7 @@ namespace SmokeTest
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
-            ste = new SmokeTestsEntitiesNew();
+            ste = new SmokeTestsEntities();
             LoadStatuses();
             LoadEvaluators();
         }

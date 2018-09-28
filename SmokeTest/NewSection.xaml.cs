@@ -21,7 +21,7 @@ namespace SmokeTest
     /// </summary>
     public partial class NewSection : Window, INotifyPropertyChanged
     {
-        private SmokeTestsEntitiesNew ste;
+        private SmokeTestsEntities ste;
 
         private string stringLabel = "Ready";
 
@@ -74,7 +74,7 @@ namespace SmokeTest
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
-            ste = new SmokeTestsEntitiesNew();
+            ste = new SmokeTestsEntities();
             TheSection = new SmokeTestDBClassLibrary.Section
             {
                 Report_ID = theReport.Id

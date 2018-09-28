@@ -26,7 +26,7 @@ namespace SmokeTest
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private SmokeTestsEntitiesNew ste;
+        private SmokeTestsEntities ste;
 
         public string CurrentVersion
         {
@@ -108,7 +108,7 @@ namespace SmokeTest
             //var ver = Assembly.GetExecutingAssembly().GetName().Version;
             //var strVer = fvi.ProductVersion;
             //var strVersion = string.Format("{0}.{1}.{2}.{3}",ver.Major,ver.Minor,ver.Build,ver.Revision);
-            ste = new SmokeTestsEntitiesNew();
+            ste = new SmokeTestsEntities();
             Title = string.Format("Smoking ({0})", CurrentVersion);
             Releases = GetReleases();
             TheRelease = GetCurrentRelease();

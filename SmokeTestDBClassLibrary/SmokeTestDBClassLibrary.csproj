@@ -52,39 +52,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Evaluator.cs">
-      <DependentUpon>SmokeTestAdoModel.tt</DependentUpon>
+      <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="HandCoded.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Release.cs">
-      <DependentUpon>SmokeTestAdoModel.tt</DependentUpon>
+      <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Report.cs">
-      <DependentUpon>SmokeTestAdoModel.tt</DependentUpon>
+      <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Report_Evaluation.cs">
-      <DependentUpon>SmokeTestAdoModel.tt</DependentUpon>
+      <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Section.cs">
-      <DependentUpon>SmokeTestAdoModel.tt</DependentUpon>
+      <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Section_Evaluation.cs">
-      <DependentUpon>SmokeTestAdoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SmokeTestAdoModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SmokeTestAdoModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SmokeTestAdoModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SmokeTestAdoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SmokeTestAdoModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SmokeTestAdoModel.edmx</DependentUpon>
+      <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SmokeTestDBModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -102,53 +86,34 @@
       <DependentUpon>SmokeTestDBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Status.cs">
-      <DependentUpon>SmokeTestAdoModel.tt</DependentUpon>
+      <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="SmokeTestDBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SmokeTestDBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="SmokeTestAdoModel.edmx">
+    <EntityDeploy Include="SmokeTestDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SmokeTestAdoModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>SmokeTestDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="SmokeTestAdoModel.edmx.diagram">
-      <DependentUpon>SmokeTestAdoModel.edmx</DependentUpon>
-    </None>
     <None Include="SmokeTestDBModel.edmx.diagram">
       <DependentUpon>SmokeTestDBModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SmokeTestAdoModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SmokeTestAdoModel.edmx</DependentUpon>
-      <LastGenOutput>SmokeTestAdoModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="SmokeTestAdoModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SmokeTestAdoModel.edmx</DependentUpon>
-      <LastGenOutput>SmokeTestAdoModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="SmokeTestDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SmokeTestDBModel.Context.cs</LastGenOutput>
       <DependentUpon>SmokeTestDBModel.edmx</DependentUpon>
+      <LastGenOutput>SmokeTestDBModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="SmokeTestDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SmokeTestDBModel.edmx</DependentUpon>
       <LastGenOutput>SmokeTestDBModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
