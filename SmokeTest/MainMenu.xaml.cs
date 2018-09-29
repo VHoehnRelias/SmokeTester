@@ -40,7 +40,14 @@ namespace SmokeTest
 
         private void PopulateReleases()
         {
-            TheReleases = ste.Releases.ToList();
+            try
+            {
+                TheReleases = ste.Releases.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BtnReport_Click(object sender, RoutedEventArgs e)
