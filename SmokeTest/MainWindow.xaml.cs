@@ -284,5 +284,11 @@ namespace SmokeTest
             vwr.Show();
         }
 
+        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var frm = new ReleaseReports(TheRelease);
+            // frm.TheStatus = ste.Status.Where(a => a.Release_ID == TheRelease.Id && a.Status_ID == TheStatus.Id)
+            frm.Show();
+        }
     }
 }

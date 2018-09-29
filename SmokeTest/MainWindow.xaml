@@ -38,7 +38,15 @@
                     <DataGridTextColumn Header="Count" Binding="{Binding Count}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <WebBrowser Name="wbReports" Margin="0" Height="320"/>
+            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="4">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="Good" Background="Green" Foreground="White" MouseDoubleClick="Label_MouseDoubleClick"/>
+                    <Label Content="Bad" Background="Yellow" Foreground="Orange"/>
+                    <Label Content="Ugly" Background="Red" Foreground="White"/>
+                    <Label Content="N/A" Background="Gray" Foreground="Black"/>
+                </StackPanel>
+            </StackPanel>    
+            <WebBrowser Name="wbReports" Height="350" Margin="0,0,-0.2,0"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch">
             <Label Content="Sections" HorizontalAlignment="Center" />
@@ -48,8 +56,15 @@
                     <DataGridTextColumn Header="Count" Binding="{Binding Count}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0"/>
-            <WebBrowser Name="wbSections" Margin="0" Height="320"/>
+            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="4">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="Good" Background="Green" Foreground="White"/>
+                    <Label Content="Bad" Background="Yellow" Foreground="Orange"/>
+                    <Label Content="Ugly" Background="Red" Foreground="White"/>
+                    <Label Content="N/A" Background="Gray" Foreground="Black"/>
+                </StackPanel>
+            </StackPanel>
+            <WebBrowser Name="wbSections" Height="350" Margin="0,0,-0.2,0"/>
         </StackPanel>
     </Grid>
 </Window>

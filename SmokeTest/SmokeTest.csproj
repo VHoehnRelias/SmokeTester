@@ -257,6 +257,8 @@
     <Content Include="ReportStatus.html" />
     <Content Include="SectionStatus.html" />
     <Content Include="StatusTemplate.html" />
+	<Content Include="ReportsView.html" />
+	<Content Include="SectionsView.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmokeTestDBClassLibrary\SmokeTestDBClassLibrary.csproj">
