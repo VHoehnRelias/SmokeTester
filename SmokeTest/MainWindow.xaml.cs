@@ -129,6 +129,7 @@ namespace SmokeTest
 
         private void PopulateReportSummaries()
         {
+            Cursor = Cursors.Wait;
             var dateString = "2018, 9, 26";
             var goodReport = "";
             var badReport = "";
@@ -239,6 +240,7 @@ namespace SmokeTest
             Uri pageUriS = new Uri(sectionStatusPage);
             wbReports.Source = pageUriR;
             wbSections.Source = pageUriS;
+            Cursor = Cursors.Arrow;
         }
 
         private void BtnEditReports_Click(object sender, RoutedEventArgs e)
@@ -264,8 +266,7 @@ namespace SmokeTest
             var frm = new ReleaseSectionsAll(TheRelease);
             frm.Show();
         }
-
-
+        
         private void BtnView_Click_Report(object sender, RoutedEventArgs e)
         {
             var vwr = new WebViewer
@@ -289,6 +290,57 @@ namespace SmokeTest
             var frm = new ReleaseReports(TheRelease);
             // frm.TheStatus = ste.Status.Where(a => a.Release_ID == TheRelease.Id && a.Status_ID == TheStatus.Id)
             frm.Show();
+        }
+
+        private void BtnRep_Click(object sender, RoutedEventArgs e)
+        {            
+            var btn = (Button)sender;
+            var strType = btn.Content;
+            var tid = 0;
+            switch (strType)
+            {
+                case "Good": tid = 2;
+                    break;
+                case "Bad": tid = 3;
+                    break;
+                case "Ugly": tid = 4;
+                    break;
+                default: tid = 1;
+                    break;
+            }
+            var frm = new ReleaseReports(TheRelease);
+            frm.TheStatus = ste.Status.Where(a => a.Id == tid).Single();
+            frm.Show();
+        }
+
+        private void BtnSec_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            var strType = btn.Content;
+            var tid = 0;
+            switch (strType)
+            {
+                case "Good":
+                    tid = 2;
+                    break;
+                case "Bad":
+                    tid = 3;
+                    break;
+                case "Ugly":
+                    tid = 4;
+                    break;
+                default:
+                    tid = 1;
+                    break;
+            }
+            var frm = new ReleaseSectionsAll(TheRelease);
+            frm.TheStatus = ste.Status.Where(a => a.Id == tid).Single();
+            frm.Show();
+        }
+
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            PopulateReportSummaries();
         }
     }
 }

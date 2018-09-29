@@ -23,6 +23,36 @@ namespace SmokeTest
     {
         private SmokeTestsEntities ste;
 
+        private string rowCount;
+
+        public string RowCount
+        {
+            get { return rowCount; }
+            set
+            {
+                if (rowCount != value)
+                {
+                    rowCount = value;
+                    OnPropertyChanged("RowCount");
+                }
+            }
+        }
+        
+        private string stringLabel = "Ready";
+
+        public string StringLabel
+        {
+            get { return stringLabel; }
+            set
+            {
+                if (stringLabel != value)
+                {
+                    stringLabel = value;
+                    OnPropertyChanged("StringLabel");
+                }
+            }
+        }
+
         private Release theRelease;
 
         public Release TheRelease
@@ -42,7 +72,6 @@ namespace SmokeTest
                 {
                     theReport = value;
                     OnPropertyChanged("TheReport");
-                    UpdateList();
                 }
             }
         }
@@ -62,6 +91,22 @@ namespace SmokeTest
             }
         }
 
+        private Evaluator theEvaluator;
+
+        public Evaluator TheEvaluator
+        {
+            get { return theEvaluator; }
+            set
+            {
+                if (theEvaluator != value)
+                {
+                    theEvaluator = value;
+                    OnPropertyChanged("TheEvaluator");
+                    LoadSections();
+                }
+            }
+        }
+
         private List<Status> theStatuses;
 
         public List<Status> TheStatuses
@@ -77,12 +122,36 @@ namespace SmokeTest
             }
         }
 
+        private Status theStatus;
+
+        public Status TheStatus
+        {
+            get { return theStatus; }
+            set
+            {
+                if (theStatus != value)
+                {
+                    theStatus = value;
+                    OnPropertyChanged("TheStatus");
+                    LoadSections();
+                }
+            }
+        }
+
         private List<Section_Evaluation> sections;
 
         public List<Section_Evaluation> Sections
         {
             get { return sections; }
-            set { sections = value; }
+            set
+            {
+                if (sections != value)
+                {
+                    sections = value;
+                    OnPropertyChanged("Sections");
+                    RowCount = string.Format("({0} rows)", Sections.Count());
+                }
+            }
         }
         
         public ReleaseSectionsAll(Release theRelease)
@@ -91,6 +160,7 @@ namespace SmokeTest
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
             ste = new SmokeTestsEntities();
+            TheRelease = theRelease;
             LoadStatuses();
             LoadEvaluators();
         }
@@ -105,9 +175,30 @@ namespace SmokeTest
             TheEvaluators = ste.Evaluators.ToList();
         }
 
-        private void UpdateList()
+        private void LoadSections()
         {
-            Sections = ste.Section_Evaluations.Where(s => s.Release_ID == TheReport.Release_ID & s.Report_ID == TheReport.Report_ID).ToList();
+            if (TheStatus != null)
+            {
+                if (TheEvaluator != null)
+                {
+                    Sections = ste.Section_Evaluations.Where(a => a.Release_ID == TheRelease.Id && a.Evaluator_ID == TheEvaluator.Id && a.Status_ID == TheStatus.Id).ToList();
+                }
+                else
+                {
+                    Sections = ste.Section_Evaluations.Where(s => s.Release_ID == TheRelease.Id && s.Status_ID == TheStatus.Id).ToList();
+                }
+            }
+            else
+            {
+                if (TheEvaluator != null)
+                {
+                    Sections = ste.Section_Evaluations.Where(a => a.Release_ID == TheRelease.Id && a.Evaluator_ID == TheEvaluator.Id).ToList();
+                }
+                else
+                {
+                    Sections = ste.Section_Evaluations.Where(s => s.Release_ID == TheRelease.Id).ToList();
+                }
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -135,6 +226,13 @@ namespace SmokeTest
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             ste.SaveChanges();
+            StringLabel = "Saved Successfully";
+            LoadSections();
+        }
+
+        private void BtnSave_LostFoucs(object sender, RoutedEventArgs e)
+        {
+            StringLabel = "Ready";
         }
     }
 }

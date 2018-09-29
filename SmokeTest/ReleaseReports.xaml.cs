@@ -169,26 +169,41 @@ namespace SmokeTest
 
         private void LoadReports()
         {
-            TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id).ToList();
-        }
-        private void LoadReportForStatus()
-        {  
-            if (theStatus.Name == "☺")
+            if (TheEvaluator != null)
             {
-                TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id).ToList();
+                if (TheStatus != null)
+                {
+                    TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id && a.Evaluator_ID == TheEvaluator.Id && a.Status_ID == TheStatus.Id).ToList();
+                }
+                else
+                { 
+                    TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id && a.Evaluator_ID == TheEvaluator.Id).ToList();
+                }
             }
             else
+            {
+                if (TheStatus != null)
+                {
+                    TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id && a.Status_ID == TheStatus.Id).ToList();
+                }
+                else
+                {
+                    TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id).ToList();
+                }
+            }
+        }
+
+        private void LoadReportForStatus()
+        {  
+            if (TheStatus != null)
             {
                 TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id && a.Status_ID == TheStatus.Id).ToList();
             }
         }
+
         private void LoadReportForEvaluators()
         {
-            if (theStatus.Name == " ")
-            {
-                TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id).ToList();
-            }
-            else
+            if (TheEvaluator != null)
             {
                 TheReports = ste.Report_Evaluations.Where(a => a.Release_ID == TheRelease.Id && a.Evaluator_ID == TheEvaluator.Id).ToList();
             }
@@ -239,6 +254,7 @@ namespace SmokeTest
             
             ste.SaveChanges();
             StringLabel = "Saved Successfully";
+            LoadReports();
         }
 
         private void BtnSave_LostFoucs(object sender, RoutedEventArgs e)

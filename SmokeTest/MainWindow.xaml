@@ -18,6 +18,7 @@
             <RowDefinition Height="55"/>
             <RowDefinition Height="55"/>
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Name="GrdSettings" Grid.Column="0">
             <Button Name="BtnEditReports" Content="Add and Edit Reports" Click="BtnEditReports_Click" Foreground="Red" Margin="10" />
@@ -40,10 +41,10 @@
             </DataGrid>
             <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="4">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Content="Good" Background="Green" Foreground="White" MouseDoubleClick="Label_MouseDoubleClick"/>
-                    <Label Content="Bad" Background="Yellow" Foreground="Orange"/>
-                    <Label Content="Ugly" Background="Red" Foreground="White"/>
-                    <Label Content="N/A" Background="Gray" Foreground="Black"/>
+                    <Button Name="BtnRepGood" Content="Good" Background="Green" Foreground="White" Click="BtnRep_Click" />
+                    <Button Name="BtnRepBad" Content="Bad" Background="Yellow" Foreground="Orange" Click="BtnRep_Click"/>
+                    <Button Name="BtnRepUgly" Content="Ugly" Background="Red" Foreground="White" Click="BtnRep_Click"/>
+                    <Button Name="BtnRepNA" Content="N/A" Background="Gray" Foreground="Black" Click="BtnRep_Click"/>
                 </StackPanel>
             </StackPanel>    
             <WebBrowser Name="wbReports" Height="350" Margin="0,0,-0.2,0"/>
@@ -58,13 +59,14 @@
             </DataGrid>
             <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="4">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Content="Good" Background="Green" Foreground="White"/>
-                    <Label Content="Bad" Background="Yellow" Foreground="Orange"/>
-                    <Label Content="Ugly" Background="Red" Foreground="White"/>
-                    <Label Content="N/A" Background="Gray" Foreground="Black"/>
+                    <Button Name="BtnSecGood" Content="Good" Background="Green" Foreground="White" Click="BtnSec_Click"/>
+                    <Button Name="BtnSecBad" Content="Bad" Background="Yellow" Foreground="Orange" Click="BtnSec_Click"/>
+                    <Button Name="BtnSecUgly" Content="Ugly" Background="Red" Foreground="White" Click="BtnSec_Click"/>
+                    <Button Name="BtnSecNA" Content="N/A" Background="Gray" Foreground="Black" Click="BtnSec_Click"/>
                 </StackPanel>
             </StackPanel>
             <WebBrowser Name="wbSections" Height="350" Margin="0,0,-0.2,0"/>
         </StackPanel>
+        <Button x:Name="BtnRefresh" Content="Refresh" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="30" Width="100" Margin="5" Click="BtnRefresh_Click"  />
     </Grid>
 </Window>
