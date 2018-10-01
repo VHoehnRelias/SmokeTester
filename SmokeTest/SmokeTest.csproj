@@ -33,7 +33,7 @@
     <SuiteName>Hackathon</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>17</ApplicationRevision>
+    <ApplicationRevision>21</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -78,7 +78,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
@@ -257,8 +257,8 @@
     <Content Include="ReportStatus.html" />
     <Content Include="SectionStatus.html" />
     <Content Include="StatusTemplate.html" />
-	<Content Include="ReportsView.html" />
-	<Content Include="SectionsView.html" />
+    <Content Include="ReportsView.html" />
+    <Content Include="SectionsView.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmokeTestDBClassLibrary\SmokeTestDBClassLibrary.csproj">
