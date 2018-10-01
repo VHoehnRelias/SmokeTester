@@ -365,5 +365,19 @@ namespace SmokeTest
         {
             PopulateReportSummaries();
         }
+
+        private void BtnView_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var frm = new WebViewer();
+                frm.WebPage = Properties.Settings.Default.Properties["ReportPath"].ToString();
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(String.Format("BtnView_Click error: {0}", ex.Message));
+            }
+        }
     }
 }
