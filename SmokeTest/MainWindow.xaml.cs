@@ -368,15 +368,17 @@ namespace SmokeTest
 
         private void BtnView_Click(object sender, RoutedEventArgs e)
         {
+            var strPath = "";
             try
             {
                 var frm = new WebViewer();
-                frm.WebPage = Properties.Settings.Default.Properties["ReportPath"].ToString();
+                strPath = Properties.Settings.Default.Properties["ReportPath"].DefaultValue.ToString();
+                frm.WebPage = strPath;
                 frm.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format("BtnView_Click error: {0}", ex.Message));
+                MessageBox.Show(String.Format("BtnView_Click error: {0}\nPath:{1}", ex.Message,strPath));
             }
         }
     }
