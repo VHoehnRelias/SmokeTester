@@ -38,9 +38,9 @@
                     <Label Content="{Binding TheRelease.Name}" />
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
-                <Label Content="Evaluator:" Margin="10,5" />
+                    <Label Content="Evaluator:" Margin="10,5" />
                     <ComboBox Margin="10,5" ItemsSource="{Binding TheEvaluators}" SelectedValue="{Binding TheEvaluator, Mode=TwoWay}" DisplayMemberPath="Name" Width="100" />
-            </StackPanel>
+                </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Label Content="Status:" Margin="10,5" />
                     <ComboBox Margin="10,5" ItemsSource="{Binding TheStatuses}" SelectedValue="{Binding TheStatus, Mode=TwoWay}" DisplayMemberPath="Name" Width="100" />
@@ -52,7 +52,7 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <DataGrid x:Name="DgReports" Margin="10,80,9.6,10" ItemsSource="{Binding TheReports}" AutoGenerateColumns="False" VerticalAlignment="Top">
+        <DataGrid x:Name="DgReports" Margin="0,80,10,0" ItemsSource="{Binding TheReports}" AutoGenerateColumns="False" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1084">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Report.Id}" IsReadOnly="True" 
                                     HeaderStyle="{StaticResource ctrHeader}" 
@@ -101,6 +101,6 @@
                 </LinearGradientBrush>
             </DataGrid.AlternatingRowBackground>
         </DataGrid>
-        
+
     </Grid>
 </Window>

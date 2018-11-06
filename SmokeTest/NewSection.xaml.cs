@@ -38,6 +38,21 @@ namespace SmokeTest
             }
         }
 
+        private Release currentRelease;
+
+        public Release CurrentRelease
+        {
+            get { return currentRelease; }
+            set
+            {
+                if (currentRelease != value)
+                {
+                    currentRelease = value;
+                    OnPropertyChanged("CurrentRelease");
+                }
+            }
+        }
+
         private Report theReport;
 
         public Report TheReport
@@ -48,6 +63,7 @@ namespace SmokeTest
                 if(theReport != value)
                 {
                     theReport = value;
+                    OnPropertyChanged("TheReport");
                 }
             }
         }
@@ -65,19 +81,29 @@ namespace SmokeTest
         public SmokeTestDBClassLibrary.Section TheSection
         {
             get { return theSection; }
-            set { theSection = value; }
+            set
+            {
+                if(theSection != value)
+                {
+                    theSection = value;
+                    OnPropertyChanged("TheSection");
+                }
+            }
         }
-
-
-        public NewSection(Report theReport)
+        
+        public NewSection(Release theRelease, SmokeTestsEntities oSte,Report theReport)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
-            ste = new SmokeTestsEntities();
+            CurrentRelease = theRelease;
+            TheReport = theReport;
+            ste = oSte;
+            var newOrderID = ste.Sections.Where(s => s.Report_ID == TheReport.Id).Max(s => s.OrderID) + 1;
             TheSection = new SmokeTestDBClassLibrary.Section
             {
-                Report_ID = theReport.Id
+                Report_ID = theReport.Id,
+                OrderID = newOrderID
             };
         }
 
@@ -91,11 +117,20 @@ namespace SmokeTest
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             ste.Sections.Add(TheSection);
+            var newSectionEval = new Section_Evaluation
+            {
+                Evaluator_ID = 1,
+                Status_ID = 1,
+                Release_ID = CurrentRelease.Id,
+                Report_ID = TheReport.Id           
+            };
+            ste.Section_Evaluations.Add(newSectionEval);
             ste.SaveChanges();
             StringLabel = "Saved Successfully";
             formParent.UpdateSections();
             //formParent.DgReport.Items.Refresh();
         }
+
         private void BtnSave_LostFoucs(object sender, RoutedEventArgs e)
         {
             StringLabel = "Ready";

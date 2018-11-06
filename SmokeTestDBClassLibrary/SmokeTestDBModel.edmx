@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SmokeTestsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SmokeTestsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Evaluators">
           <Key>
             <PropertyRef Name="Id" />
@@ -58,7 +58,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Report ID" Type="int" Nullable="false" />
-          <Property Name="Section" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="SectionName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Status">
@@ -68,114 +69,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="10" />
         </EntityType>
-        <Association Name="FK_Report Evaluation_ToEvaluators">
-          <End Role="Evaluators" Type="Self.Evaluators" Multiplicity="1" />
-          <End Role="Report Evaluation" Type="Self.Report Evaluation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Evaluators">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Report Evaluation">
-              <PropertyRef Name="Evaluator ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Report Evaluation_ToRelease">
-          <End Role="Release" Type="Self.Release" Multiplicity="1" />
-          <End Role="Report Evaluation" Type="Self.Report Evaluation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Release">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Report Evaluation">
-              <PropertyRef Name="Release ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Report Evaluation_ToReports">
-          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
-          <End Role="Report Evaluation" Type="Self.Report Evaluation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reports">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Report Evaluation">
-              <PropertyRef Name="Report ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Report Evaluation_ToStatus">
-          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
-          <End Role="Report Evaluation" Type="Self.Report Evaluation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Report Evaluation">
-              <PropertyRef Name="Status ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section Evaluation_ToEvaluators">
-          <End Role="Evaluators" Type="Self.Evaluators" Multiplicity="1" />
-          <End Role="Section Evaluation" Type="Self.Section Evaluation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Evaluators">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Section Evaluation">
-              <PropertyRef Name="Evaluator ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section Evaluation_ToRelease">
-          <End Role="Release" Type="Self.Release" Multiplicity="1" />
-          <End Role="Section Evaluation" Type="Self.Section Evaluation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Release">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Section Evaluation">
-              <PropertyRef Name="Release ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section Evaluation_ToReport">
-          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
-          <End Role="Section Evaluation" Type="Self.Section Evaluation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reports">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Section Evaluation">
-              <PropertyRef Name="Report ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section Evaluation_ToSections">
-          <End Role="Sections" Type="Self.Sections" Multiplicity="1" />
-          <End Role="Section Evaluation" Type="Self.Section Evaluation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sections">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Section Evaluation">
-              <PropertyRef Name="Section ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Section Evaluation_ToStatus">
-          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
-          <End Role="Section Evaluation" Type="Self.Section Evaluation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Section Evaluation">
-              <PropertyRef Name="Status ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Sections_ToReports">
           <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
           <End Role="Sections" Type="Self.Sections" Multiplicity="*" />
@@ -196,49 +89,12 @@
           <EntitySet Name="Section Evaluation" EntityType="Self.Section Evaluation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Report Evaluation_ToEvaluators" Association="Self.FK_Report Evaluation_ToEvaluators">
-            <End Role="Evaluators" EntitySet="Evaluators" />
-            <End Role="Report Evaluation" EntitySet="Report Evaluation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Report Evaluation_ToRelease" Association="Self.FK_Report Evaluation_ToRelease">
-            <End Role="Release" EntitySet="Release" />
-            <End Role="Report Evaluation" EntitySet="Report Evaluation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Report Evaluation_ToReports" Association="Self.FK_Report Evaluation_ToReports">
-            <End Role="Reports" EntitySet="Reports" />
-            <End Role="Report Evaluation" EntitySet="Report Evaluation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Report Evaluation_ToStatus" Association="Self.FK_Report Evaluation_ToStatus">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Report Evaluation" EntitySet="Report Evaluation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section Evaluation_ToEvaluators" Association="Self.FK_Section Evaluation_ToEvaluators">
-            <End Role="Evaluators" EntitySet="Evaluators" />
-            <End Role="Section Evaluation" EntitySet="Section Evaluation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section Evaluation_ToRelease" Association="Self.FK_Section Evaluation_ToRelease">
-            <End Role="Release" EntitySet="Release" />
-            <End Role="Section Evaluation" EntitySet="Section Evaluation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section Evaluation_ToReport" Association="Self.FK_Section Evaluation_ToReport">
-            <End Role="Reports" EntitySet="Reports" />
-            <End Role="Section Evaluation" EntitySet="Section Evaluation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section Evaluation_ToSections" Association="Self.FK_Section Evaluation_ToSections">
-            <End Role="Sections" EntitySet="Sections" />
-            <End Role="Section Evaluation" EntitySet="Section Evaluation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Section Evaluation_ToStatus" Association="Self.FK_Section Evaluation_ToStatus">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Section Evaluation" EntitySet="Section Evaluation" />
-          </AssociationSet>
           <AssociationSet Name="FK_Sections_ToReports" Association="Self.FK_Sections_ToReports">
             <End Role="Reports" EntitySet="Reports" />
             <End Role="Sections" EntitySet="Sections" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SmokeTestsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -308,10 +164,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Report_ID" Type="Int32" Nullable="false" />
-          <Property Name="Section1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Report" Relationship="Self.FK_Sections_ToReports" FromRole="Sections" ToRole="Reports" />
           <NavigationProperty Name="Section_Evaluation" Relationship="Self.FK_Section_Evaluation_ToSections" FromRole="Sections" ToRole="Section_Evaluation" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="SectionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -552,9 +409,10 @@
           <EntitySetMapping Name="Sections">
             <EntityTypeMapping TypeName="SmokeTestsModel.Section">
               <MappingFragment StoreEntitySet="Sections">
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Report_ID" ColumnName="Report ID" />
-                <ScalarProperty Name="Section1" ColumnName="Section" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -30,6 +30,37 @@ namespace SmokeTest
             }
         }
 
+        private bool useCurrentRelease = true;
+
+        public bool UseCurrentRelease
+        {
+            get { return useCurrentRelease; }
+            set
+            {
+                if (useCurrentRelease != value)
+                {
+                    useCurrentRelease = value;
+                    OnPropertyChanged("UseCurrentRelease");
+                }
+            }
+        }
+
+        private Release currentRelease;
+
+        public Release CurrentRelease
+        {
+            get { return currentRelease; }
+            set
+            {
+                if (currentRelease != value)
+                {
+                    currentRelease = value;
+                    OnPropertyChanged("CurrentRelease");
+                }
+            }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
@@ -51,12 +82,13 @@ namespace SmokeTest
             }
         }
 
-        public ReportEditor()
+        public ReportEditor(Release theRelease)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
             ste = new SmokeTestsEntities();
+            CurrentRelease = theRelease;
             PopulateTheReports();
         }
 
@@ -103,7 +135,7 @@ namespace SmokeTest
                 //var itm = (SmokeTestDBClassLibrary.Report)g.SelectedItem;
                 var id = (int)g.Tag;
                 var itm = TheReports.Single(a => a.Id == id);
-                var report = new NewReport(itm);
+                var report = new NewReport(ste, itm, CurrentRelease);
                 report.Show();
             }
             catch (Exception ex)
@@ -114,8 +146,14 @@ namespace SmokeTest
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            var newRpt = new NewReport(new Report());
+            var newReport = new Report();
+            var newRpt = new NewReport(ste, newReport, CurrentRelease);
             newRpt.Show();
+        }
+
+        private void CbxRelease_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmokeTest"
         mc:Ignorable="d"
-        Title="ReportSection" Height="450" Width="800">
+        Title="Report Section" Height="450" Width="800">
     <Grid>
         <StackPanel Orientation="Horizontal" Margin="10,40,9.6,345" Height="35">
             <Label Content="Report:" HorizontalAlignment="Left" Width="100" VerticalAlignment="Top"/>

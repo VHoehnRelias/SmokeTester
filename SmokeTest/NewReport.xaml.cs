@@ -38,6 +38,21 @@ namespace SmokeTest
             }
         }
 
+        private Release currentRelease;
+
+        public Release CurrentRelease
+        {
+            get { return currentRelease; }
+            set
+            {
+                if (currentRelease != value)
+                {
+                    currentRelease = value;
+                    OnPropertyChanged("CurrentRelease");
+                }
+            }
+        }
+
         private Report theReport = new Report();
 
         public Report TheReport
@@ -91,35 +106,43 @@ namespace SmokeTest
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public NewReport(Report theReport)
+        public NewReport(SmokeTestsEntities theSte, Report theReport, Release TheRelease)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
-            ste = new SmokeTestsEntities();
+            ste = theSte;
+            CurrentRelease = TheRelease;
             TheReport = theReport;
             UpdateSections();
         }
 
         public void UpdateSections()
         {
-            ReportSections = ste.Sections.Where(a => a.Report_ID == TheReport.Id).ToList();
+            ReportSections = ste.Sections.Where(a => a.Report_ID == TheReport.Id).OrderBy(a => a.OrderID).ToList();
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (TheReport != null)
-            {
-                ste.Reports.Add(TheReport);
-                if(TheReport.File_Name != null && TheReport.Left_Navigation_Menu_location != null && TheReport.Report_Name != null)
+            { 
+                //If report already exists
+                if (TheReport.Id != 0)
                 {
                     ste.SaveChanges();
-                    StringLabel = "Saved Successfully";
-                } else
-                {
-                    StringLabel = "Can't be blank";
                 }
-                
+                else
+                {
+                    ste.Reports.Add(TheReport);
+                    if(TheReport.File_Name != null && TheReport.Left_Navigation_Menu_location != null && TheReport.Report_Name != null)
+                    {
+                        ste.SaveChanges();
+                        StringLabel = "Saved Successfully";
+                    } else
+                    {
+                        StringLabel = "Can't be blank";
+                    }
+                }                
             }
         }
 
@@ -140,7 +163,7 @@ namespace SmokeTest
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             //Add Section open NewSection Form
-            var frm = new NewSection(TheReport)
+            var frm = new NewSection(CurrentRelease, ste, TheReport)
             {
                 FormParent = this
             };
@@ -149,7 +172,10 @@ namespace SmokeTest
 
         private void BtnDeleteSection_Click(object sender, RoutedEventArgs e)
         {
+            ReportSections.Remove(SelectedSection);
             ste.Sections.Remove(SelectedSection);
+            OnPropertyChanged("ReportSections");
+            ste.SaveChanges();
         }
     }
 }

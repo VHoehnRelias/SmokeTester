@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmokeTest"
         mc:Ignorable="d"
-        Title="Release Report Sections" Height="750" Width="1275">
+        Title="Release Sections All" Height="750" Width="1275">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -62,7 +62,7 @@
                                     CellStyle="{StaticResource ctrGridCell}" 
                                     ElementStyle="{StaticResource tbxGridCell}" 
                                     EditingElementStyle="{StaticResource ctrGridCellEdit}"/>
-                <DataGridTextColumn Header="Section" Binding="{Binding Section.Section1}" IsReadOnly="True" Width="300"
+                <DataGridTextColumn Header="Section" Binding="{Binding Section.SectionName}" IsReadOnly="True" Width="300"
                                     HeaderStyle="{StaticResource ctrHeader}" 
                                     CellStyle="{StaticResource ctrGridCell}" 
                                     ElementStyle="{StaticResource tbxGridCell}" 
