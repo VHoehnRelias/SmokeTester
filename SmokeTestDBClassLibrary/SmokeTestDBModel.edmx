@@ -284,9 +284,6 @@
           <Property Name="Report_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="File_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Left_Navigation_Menu_location" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Report_Evaluation" Relationship="Self.FK_Report_Evaluation_ToReports" FromRole="Reports" ToRole="Report_Evaluation" />
-          <NavigationProperty Name="Section_Evaluation" Relationship="Self.FK_Section_Evaluation_ToReport" FromRole="Reports" ToRole="Section_Evaluation" />
-          <NavigationProperty Name="Sections" Relationship="Self.FK_Sections_ToReports" FromRole="Reports" ToRole="Sections" />
         </EntityType>
         <EntityType Name="Section_Evaluation">
           <Key>
