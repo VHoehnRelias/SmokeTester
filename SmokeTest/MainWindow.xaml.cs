@@ -128,7 +128,7 @@ namespace SmokeTest
             Release rel = null;
             try
             {
-                rel = Releases.First();
+                rel = Releases.Last();
             }
             catch (Exception ex)
             {
@@ -227,11 +227,15 @@ namespace SmokeTest
                 }
 
                 string appDir = Environment.CurrentDirectory;
-                int post = appDir.LastIndexOf("bin\\Debug");
-                string strDir = appDir.Remove(post);
-                string templatePageLink = strDir + "StatusTemplate.html";
-                string reportStatusPage = strDir + "ReportStatus.html";
-                string sectionStatusPage = strDir + "SectionStatus.html";
+                string strDir = appDir;
+                int post = appDir.LastIndexOf("\\bin\\Debug");
+                if (post > 0)
+                {
+                    strDir = appDir.Remove(post);
+                }
+                string templatePageLink = strDir + "\\StatusTemplate.html";
+                string reportStatusPage = strDir + "\\ReportStatus.html";
+                string sectionStatusPage = strDir + "\\SectionStatus.html";
                 string pageSource = System.IO.File.ReadAllText(templatePageLink);
                 string reportSource = "";
                 string sectionSource = "";
@@ -268,7 +272,7 @@ namespace SmokeTest
 
         private void BtnEditReports_Click(object sender, RoutedEventArgs e)
         {
-            var frm = new ReportEditor();
+            var frm = new ReportEditor(TheRelease);
             frm.Show();
         }
 

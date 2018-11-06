@@ -13,18 +13,21 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="{Binding TheReport.Id}" HorizontalAlignment="Left" />
+        <Label Grid.Row="0" Grid.Column="1" Content="{Binding TheReport.Report_Name}" />
         <Label Content="Section:" Grid.Column="0" Grid.Row="1"/>
-        <TextBox Text="{Binding TheSection.Section1}" Grid.Column="1" Grid.Row="1"/>
+        <TextBox Text="{Binding TheSection.SectionName}" Grid.Column="1" Grid.Row="1"/>
         <Label Content="Description:" Grid.Column="0" Grid.Row="2"/>
         <TextBox Text="{Binding Path=TheSection.Description}" Grid.Column="1" Grid.Row="2"/>
-
-        <Button Name="BtnSave" Content="Save" Grid.Column="1" Grid.Row="4" Height="35" Width="100" VerticalAlignment="Top" Click="BtnSave_Click" LostFocus="BtnSave_LostFoucs"/>
-        <Label Content="{Binding StringLabel}" Foreground="Red"  HorizontalContentAlignment="Center" VerticalContentAlignment="center" Grid.Column="1" HorizontalAlignment="Center"  Margin="113.6,58,127.2,0" Grid.Row="4" VerticalAlignment="Top" Height="58" Width="156"/>
+        <Label Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontStyle="Normal" FontWeight="Light" Content="{Binding CurrentRelease}" />
+        <Label Grid.Row="4" Grid.Column="1" Content="{Binding StringLabel}" Foreground="Red"  HorizontalContentAlignment="Center" VerticalContentAlignment="center" HorizontalAlignment="Center" Width="156"/>
+        <Button Grid.Row="5" Grid.Column="1" Name="BtnSave" Content="Save" Height="35" Width="100" VerticalAlignment="Top" Click="BtnSave_Click" LostFocus="BtnSave_LostFoucs"/>
     </Grid>
 </Window>

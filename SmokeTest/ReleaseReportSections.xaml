@@ -52,7 +52,7 @@
                                 SelectedValueBinding="{Binding Evaluator_ID, Mode=TwoWay}"                     
                                 SelectedValuePath="Id"
                                 DisplayMemberPath="Name"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Section.Section1}" IsReadOnly="True" Width="300"
+                <DataGridTextColumn Header="Name" Binding="{Binding Section.SectionName}" IsReadOnly="True" Width="300"
                                     HeaderStyle="{StaticResource ctrHeader}" 
                                     CellStyle="{StaticResource ctrGridCell}" 
                                     ElementStyle="{StaticResource tbxGridCell}" 

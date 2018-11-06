@@ -28,7 +28,7 @@
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10" >
             <Label Content="Release:" />
-            <ComboBox Width="300" ItemsSource="{Binding Releases}" DisplayMemberPath="Name" 
+            <ComboBox Width="300" ItemsSource="{Binding Releases}" 
                       SelectedValue="{Binding TheRelease, Mode=TwoWay}" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2">

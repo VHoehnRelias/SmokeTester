@@ -5,17 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmokeTest"
         mc:Ignorable="d"
-        Title="New Report" Height="450" Width="800">
+        Title="New Report" Height="500" Width="900">
     <Grid>
-        <Grid Margin="15" Height="100" VerticalAlignment="Top">
+        <Grid Margin="15" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition  />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="35">
                 <Label Content="Report:     " FontWeight="Light" />
@@ -34,12 +36,13 @@
             <Button Grid.Column="1" Grid.Row="0" x:Name="BtnSave" Content="Save" Margin="10,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnSave_Click" LostFocus="BtnSave_LostFoucs"/>
             <Button Grid.Column="1" Grid.Row="1" x:Name="BtnAdd" Content="Add Sections" Margin="10,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnAdd_Click"/>
             <Button Grid.Column="1" Grid.Row="2" x:Name="BtnDelete" Content="Delete Report" Margin="10,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnDelete_Click"/>
+            <Label Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontStyle="Normal" FontWeight="Light"  Margin="10,0" Content="{Binding CurrentRelease}" />
             <!--<Button x:Name="BtnView" Content="View" Margin="10,100,0,0" VerticalAlignment="Top" Height="30" FontSize="16" FontWeight="Bold" Click="BtnView_Click"/>-->
-        </Grid>
-        <DataGrid x:Name="DgReport" Margin="10,140,9.6,10" 
+            <DataGrid x:Name="DgReport" Grid.Row="4" Grid.ColumnSpan="2"
                   ItemsSource="{Binding ReportSections}"
                   SelectedItem="{Binding SelectedSection}"
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False" VerticalAlignment="Top" 
+                  HorizontalAlignment="Stretch" >
             <DataGrid.AlternatingRowBackground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFF6F7F7" Offset="0"/>
@@ -47,7 +50,8 @@
                 </LinearGradientBrush>
             </DataGrid.AlternatingRowBackground>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Section" Binding="{Binding Section1}" Width="300" />
+                <DataGridTextColumn Header="Section" Binding="{Binding SectionName}" Width="300" />
+                <DataGridTextColumn Header="Order" Binding="{Binding OrderID}" Width="50" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="400" />
                 <DataGridTemplateColumn Header="Delete">
                     <DataGridTemplateColumn.CellTemplate>
@@ -58,5 +62,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        </Grid>
     </Grid>
 </Window>

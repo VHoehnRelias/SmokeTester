@@ -58,6 +58,7 @@
     <Compile Include="Release.cs">
       <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReleasePC.cs" />
     <Compile Include="Report.cs">
       <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
     </Compile>
