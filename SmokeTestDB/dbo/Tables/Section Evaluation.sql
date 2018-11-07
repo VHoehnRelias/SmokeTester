@@ -6,15 +6,30 @@
     [Section ID]   INT             NOT NULL,
     [Status ID]    INT             NULL,
     [Comment]      NVARCHAR (1000) NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_Section Evaluation_ToEvaluators] FOREIGN KEY ([Evaluator ID]) REFERENCES [dbo].[Evaluators] ([Id]),
-    CONSTRAINT [FK_Section Evaluation_ToRelease] FOREIGN KEY ([Release ID]) REFERENCES [dbo].[Release] ([Id]),
-    CONSTRAINT [FK_Section Evaluation_ToReport] FOREIGN KEY ([Report ID]) REFERENCES [dbo].[Reports] ([Id]),
-    CONSTRAINT [FK_Section Evaluation_ToSections] FOREIGN KEY ([Section ID]) REFERENCES [dbo].[Sections] ([Id]),
-    CONSTRAINT [FK_Section Evaluation_ToStatus] FOREIGN KEY ([Status ID]) REFERENCES [dbo].[Status] ([Id])
+    [DateAdded]    DATE            DEFAULT (getdate()) NULL,
+    [AddedBy]      NVARCHAR (50)   DEFAULT (user_name()) NULL,
+    [DateModified] DATE            DEFAULT (getdate()) NULL,
+    [ModifiedBy]   NVARCHAR (50)   DEFAULT (user_name()) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
 
 
 
 
+
+
+
+GO
+CREATE TRIGGER [dbo].[Section_Evaluation_Modified] on [dbo].[Section Evaluation] 
+	after update
+as
+begin
+
+UPDATE [dbo].[Section Evaluation] 
+   SET DateModified = GETDATE(),
+   ModifiedBy = CURRENT_USER
+  FROM [dbo].[Section Evaluation] X
+  JOIN inserted I ON X.Id = I.Id
+
+end

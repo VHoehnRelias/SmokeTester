@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ReportPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://wcsqldev02/ReportServer/Pages/ReportViewer.aspx?%2fKalamata%2fKalamataVRH%2fReports%2fCaseLoadDashboard&amp;rs:Command=Render</Value>
+      <Value Profile="(Default)">http://wcsqldev02/ReportServer/Pages/ReportViewer.aspx?%2fKalamata%2fKalamataVRH%2fReports%2f{0}&amp;rs:Command=Render</Value>
     </Setting>
   </Settings>
 </SettingsFile>

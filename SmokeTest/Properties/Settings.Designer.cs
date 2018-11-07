@@ -26,7 +26,7 @@ namespace SmokeTest.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://wcsqldev02/ReportServer/Pages/ReportViewer.aspx?%2fKalamata%2fKalamataVRH%" +
-            "2fReports%2fCaseLoadDashboard&rs:Command=Render")]
+            "2fReports%2f{0}&rs:Command=Render")]
         public string ReportPath {
             get {
                 return ((string)(this["ReportPath"]));

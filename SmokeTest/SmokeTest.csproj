@@ -130,6 +130,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReportSummmary.cs" />
+    <Compile Include="ReportViewer.xaml.cs">
+      <DependentUpon>ReportViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfReport.xaml.cs">
       <DependentUpon>WpfReport.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="WpfReport.xaml">
       <SubType>Designer</SubType>

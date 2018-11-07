@@ -296,10 +296,7 @@ namespace SmokeTest
         
         private void BtnView_Click_Report(object sender, RoutedEventArgs e)
         {
-            var vwr = new WebViewer
-            {
-                WebPage = "ReportStatus.html"
-            };
+            var vwr = new ReportViewer("CaseLoadDashboard");
             vwr.Show();
         }
 

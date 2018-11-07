@@ -5,14 +5,30 @@
     [Report ID]    INT             NOT NULL,
     [Status ID]    INT             NULL,
     [Comment]      NVARCHAR (1000) NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_Report Evaluation_ToEvaluators] FOREIGN KEY ([Evaluator ID]) REFERENCES [dbo].[Evaluators] ([Id]),
-    CONSTRAINT [FK_Report Evaluation_ToRelease] FOREIGN KEY ([Release ID]) REFERENCES [dbo].[Release] ([Id]),
-    CONSTRAINT [FK_Report Evaluation_ToReports] FOREIGN KEY ([Report ID]) REFERENCES [dbo].[Reports] ([Id]),
-    CONSTRAINT [FK_Report Evaluation_ToStatus] FOREIGN KEY ([Status ID]) REFERENCES [dbo].[Status] ([Id])
+    [DateAdded]    DATE            DEFAULT (getdate()) NULL,
+    [AddedBy]      NVARCHAR (50)   DEFAULT (user_name()) NULL,
+    [DateModified] DATE            DEFAULT (getdate()) NULL,
+    [ModifiedBy]   NVARCHAR (50)   DEFAULT (user_name()) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
 
 
 
 
+
+
+
+GO
+CREATE TRIGGER [dbo].[Report_Evaluation_Modified] on [dbo].[Report Evaluation] 
+	after update
+as
+begin
+
+UPDATE [dbo].[Report Evaluation] 
+   SET DateModified = GETDATE(),
+   ModifiedBy = CURRENT_USER
+  FROM [dbo].[Report Evaluation] X
+  JOIN inserted I ON X.Id = I.Id
+
+end

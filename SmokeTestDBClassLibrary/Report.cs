@@ -18,5 +18,10 @@ namespace SmokeTestDBClassLibrary
         public string Report_Name { get; set; }
         public string File_Name { get; set; }
         public string Left_Navigation_Menu_location { get; set; }
+        public string AssociatedTickets { get; set; }
+        public Nullable<System.DateTime> DateAdded { get; set; }
+        public string AddedBy { get; set; }
+        public Nullable<System.DateTime> DateModified { get; set; }
+        public string ModifiedBy { get; set; }
     }
 }

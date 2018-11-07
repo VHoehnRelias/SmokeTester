@@ -35,21 +35,24 @@ namespace SmokeTest
                 if (webPage != value)
                 {
                     webPage = value;
-                    //webViewer.Source = new Uri(webPage);
-                    string appDir = Environment.CurrentDirectory;
-                    int post = appDir.LastIndexOf("bin\\Debug");
-                    if (post > 0)
-                    {
-                        string strDir = appDir.Remove(post);
-                        Uri pageUri = new Uri(strDir + webPage);
-                        //Uri pageUri = new Uri(@"C:\Users\VHoehn\Desktop\Smoken.html");
-                        webViewer.Source = pageUri;
-                    }
-                    else
-                    {
-                        Uri pageUri = new Uri(@"E:/vhoehn/Backup/SmokeTest/SmokeTest/"+webPage);
-                        webViewer.Source = pageUri;
-                    }
+                    Uri pageUri = new Uri(webPage);
+                    webViewer.Source = pageUri;
+                    ////webViewer.Source = new Uri(webPage);
+                    //string appDir = Environment.CurrentDirectory;
+                    //int post = appDir.LastIndexOf("bin\\Debug");
+                    //if (post > 0)
+                    //{
+                    //    string strDir = appDir.Remove(post);
+                    //    Uri pageUri = new Uri(strDir + webPage);
+                    //    //Uri pageUri = new Uri(@"C:\Users\VHoehn\Desktop\Smoken.html");
+                    //    webViewer.Source = pageUri;
+                    //}
+                    //else
+                    //{
+                    //    //@"E:/vhoehn/Backup/SmokeTest/SmokeTest/" + 
+                    //    Uri pageUri = new Uri(webPage);
+                    //    webViewer.Source = pageUri;
+                    //}
                 }
             }
         }

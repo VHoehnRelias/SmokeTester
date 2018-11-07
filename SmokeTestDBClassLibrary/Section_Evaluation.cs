@@ -21,6 +21,10 @@ namespace SmokeTestDBClassLibrary
         public int Section_ID { get; set; }
         public Nullable<int> Status_ID { get; set; }
         public string Comment { get; set; }
+        public Nullable<System.DateTime> DateAdded { get; set; }
+        public string AddedBy { get; set; }
+        public Nullable<System.DateTime> DateModified { get; set; }
+        public string ModifiedBy { get; set; }
     
         public virtual Evaluator Evaluator { get; set; }
         public virtual Release Release { get; set; }

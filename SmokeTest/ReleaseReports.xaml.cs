@@ -69,6 +69,21 @@ namespace SmokeTest
             }
         }
 
+        private Report_Evaluation theEvalReport;
+
+        public Report_Evaluation TheEvalReport
+        {
+            get { return theEvalReport; }
+            set
+            {
+                if (theEvalReport != value)
+                {
+                    theEvalReport = value;
+                    OnPropertyChanged("TheEvalReport");
+                }
+            }
+        }
+        
         private List<Evaluator> theEvaluators;
 
         public List<Evaluator> TheEvaluators
@@ -241,12 +256,12 @@ namespace SmokeTest
 
         private void BtnView_Click(object sender, RoutedEventArgs e)
         {
-            var vwr = new WebViewer
+            if (TheEvalReport != null)
             {
+                var rvr = new ReportViewer(TheEvalReport.Report.File_Name.Replace(".rdl",""));
+                rvr.Show();
+            }
                 //WebPage = "https://relias.atlassian.net/browse/KALAMATA-248"
-                WebPage = "ReportsView.html"
-            };
-            vwr.Show();
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -260,6 +275,13 @@ namespace SmokeTest
         private void BtnSave_LostFoucs(object sender, RoutedEventArgs e)
         {
             StringLabel = "Ready";
+        }
+
+        private void BtnTicket_Click(object sender, RoutedEventArgs e)
+        {
+            var wvr = new WebViewer{
+                WebPage = "https://relias.atlassian.net/browse/KALAMATA-248" };
+            wvr.Show();
         }
     }
 }

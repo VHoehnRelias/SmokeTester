@@ -134,12 +134,7 @@ namespace SmokeTest
 
         private void BtnView_Click(object sender, RoutedEventArgs e)
         {
-            var vwr = new WebViewer
-            {
-                //WebPage = "https://www.cmtanalytics.com/AnalyticsView.aspx"
-                //WebPage = "http://new.vhoehn.com/Tools/ValStuff.htm"
-                WebPage = "SectionsView.html"
-            };
+            var vwr = new ReportViewer(TheReport.Report.File_Name.Replace(".rdl",""));
             vwr.Show();
         }
 

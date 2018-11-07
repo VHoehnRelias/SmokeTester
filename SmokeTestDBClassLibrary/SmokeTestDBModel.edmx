@@ -11,6 +11,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateModified" Type="date" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Release">
           <Key>
@@ -19,6 +23,10 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Date" Type="date" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateModified" Type="date" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Report Evaluation">
           <Key>
@@ -30,6 +38,10 @@
           <Property Name="Report ID" Type="int" Nullable="false" />
           <Property Name="Status ID" Type="int" />
           <Property Name="Comment" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateModified" Type="date" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Reports">
           <Key>
@@ -39,6 +51,11 @@
           <Property Name="Report Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="File Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Left Navigation Menu location" Type="nvarchar" MaxLength="250" />
+          <Property Name="AssociatedTickets" Type="nvarchar" MaxLength="250" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateModified" Type="date" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Section Evaluation">
           <Key>
@@ -51,6 +68,10 @@
           <Property Name="Section ID" Type="int" Nullable="false" />
           <Property Name="Status ID" Type="int" />
           <Property Name="Comment" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateModified" Type="date" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Sections">
           <Key>
@@ -61,6 +82,11 @@
           <Property Name="OrderID" Type="int" />
           <Property Name="SectionName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="AssociatedTickets" Type="nvarchar" MaxLength="250" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateModified" Type="date" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -68,6 +94,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateModified" Type="date" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Sections_ToReports">
           <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
@@ -106,6 +136,10 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Report_Evaluation" Relationship="Self.FK_Report_Evaluation_ToEvaluators" FromRole="Evaluators" ToRole="Report_Evaluation" />
           <NavigationProperty Name="Section_Evaluation" Relationship="Self.FK_Section_Evaluation_ToEvaluators" FromRole="Evaluators" ToRole="Section_Evaluation" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateModified" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Release">
           <Key>
@@ -116,6 +150,10 @@
           <Property Name="Date" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Report_Evaluation" Relationship="Self.FK_Report_Evaluation_ToRelease" FromRole="Release" ToRole="Report_Evaluation" />
           <NavigationProperty Name="Section_Evaluation" Relationship="Self.FK_Section_Evaluation_ToRelease" FromRole="Release" ToRole="Section_Evaluation" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateModified" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Report_Evaluation">
           <Key>
@@ -131,6 +169,10 @@
           <NavigationProperty Name="Release" Relationship="Self.FK_Report_Evaluation_ToRelease" FromRole="Report_Evaluation" ToRole="Release" />
           <NavigationProperty Name="Report" Relationship="Self.FK_Report_Evaluation_ToReports" FromRole="Report_Evaluation" ToRole="Reports" />
           <NavigationProperty Name="Status" Relationship="Self.FK_Report_Evaluation_ToStatus" FromRole="Report_Evaluation" ToRole="Status" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateModified" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
@@ -140,6 +182,11 @@
           <Property Name="Report_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="File_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Left_Navigation_Menu_location" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AssociatedTickets" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateModified" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Section_Evaluation">
           <Key>
@@ -157,6 +204,10 @@
           <NavigationProperty Name="Report" Relationship="Self.FK_Section_Evaluation_ToReport" FromRole="Section_Evaluation" ToRole="Reports" />
           <NavigationProperty Name="Section" Relationship="Self.FK_Section_Evaluation_ToSections" FromRole="Section_Evaluation" ToRole="Sections" />
           <NavigationProperty Name="Status" Relationship="Self.FK_Section_Evaluation_ToStatus" FromRole="Section_Evaluation" ToRole="Status" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateModified" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Section">
           <Key>
@@ -169,6 +220,11 @@
           <NavigationProperty Name="Section_Evaluation" Relationship="Self.FK_Section_Evaluation_ToSections" FromRole="Sections" ToRole="Section_Evaluation" />
           <Property Name="OrderID" Type="Int32" />
           <Property Name="SectionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssociatedTickets" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateModified" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -178,6 +234,10 @@
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Report_Evaluation" Relationship="Self.FK_Report_Evaluation_ToStatus" FromRole="Status" ToRole="Report_Evaluation" />
           <NavigationProperty Name="Section_Evaluation" Relationship="Self.FK_Section_Evaluation_ToStatus" FromRole="Status" ToRole="Section_Evaluation" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateModified" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Report_Evaluation_ToEvaluators">
           <End Role="Evaluators" Type="Self.Evaluator" Multiplicity="1" />
@@ -357,6 +417,10 @@
           <EntitySetMapping Name="Evaluators">
             <EntityTypeMapping TypeName="SmokeTestsModel.Evaluator">
               <MappingFragment StoreEntitySet="Evaluators">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -365,6 +429,10 @@
           <EntitySetMapping Name="Releases">
             <EntityTypeMapping TypeName="SmokeTestsModel.Release">
               <MappingFragment StoreEntitySet="Release">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -374,6 +442,10 @@
           <EntitySetMapping Name="Report_Evaluations">
             <EntityTypeMapping TypeName="SmokeTestsModel.Report_Evaluation">
               <MappingFragment StoreEntitySet="Report Evaluation">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Release_ID" ColumnName="Release ID" />
                 <ScalarProperty Name="Evaluator_ID" ColumnName="Evaluator ID" />
@@ -386,6 +458,11 @@
           <EntitySetMapping Name="Reports">
             <EntityTypeMapping TypeName="SmokeTestsModel.Report">
               <MappingFragment StoreEntitySet="Reports">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="AssociatedTickets" ColumnName="AssociatedTickets" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Report_Name" ColumnName="Report Name" />
                 <ScalarProperty Name="File_Name" ColumnName="File Name" />
@@ -396,6 +473,10 @@
           <EntitySetMapping Name="Section_Evaluations">
             <EntityTypeMapping TypeName="SmokeTestsModel.Section_Evaluation">
               <MappingFragment StoreEntitySet="Section Evaluation">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Release_ID" ColumnName="Release ID" />
                 <ScalarProperty Name="Evaluator_ID" ColumnName="Evaluator ID" />
@@ -409,6 +490,11 @@
           <EntitySetMapping Name="Sections">
             <EntityTypeMapping TypeName="SmokeTestsModel.Section">
               <MappingFragment StoreEntitySet="Sections">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="AssociatedTickets" ColumnName="AssociatedTickets" />
                 <ScalarProperty Name="SectionName" ColumnName="SectionName" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -420,6 +506,10 @@
           <EntitySetMapping Name="Status">
             <EntityTypeMapping TypeName="SmokeTestsModel.Status">
               <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>

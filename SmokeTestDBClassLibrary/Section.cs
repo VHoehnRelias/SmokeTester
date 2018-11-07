@@ -25,6 +25,11 @@ namespace SmokeTestDBClassLibrary
         public string Description { get; set; }
         public Nullable<int> OrderID { get; set; }
         public string SectionName { get; set; }
+        public string AssociatedTickets { get; set; }
+        public Nullable<System.DateTime> DateAdded { get; set; }
+        public string AddedBy { get; set; }
+        public Nullable<System.DateTime> DateModified { get; set; }
+        public string ModifiedBy { get; set; }
     
         public virtual Report Report { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
