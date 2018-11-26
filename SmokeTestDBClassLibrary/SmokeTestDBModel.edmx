@@ -43,9 +43,13 @@
           <Property Name="DateModified" Type="date" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SmokeTests.dbo.Reports' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Reports">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Report Name" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -73,9 +77,13 @@
           <Property Name="DateModified" Type="date" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SmokeTests.dbo.Sections' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Sections">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Report ID" Type="int" Nullable="false" />
@@ -99,15 +107,54 @@
           <Property Name="DateModified" Type="date" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Sections_ToReports">
-          <End Role="Reports" Type="Self.Reports" Multiplicity="1" />
-          <End Role="Sections" Type="Self.Sections" Multiplicity="*" />
+        <EntityType Name="MainMenu">
+          <Key>
+            <PropertyRef Name="MainMenuID" />
+          </Key>
+          <Property Name="MainMenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="DisplayLabel" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ReportName" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="MenuSortOrder" Type="int" Nullable="false" />
+          <Property Name="SelectedFillColor" Type="varchar" MaxLength="10" />
+          <Property Name="NotSelectedFillColor" Type="varchar" MaxLength="10" />
+          <Property Name="SelectedFontColor" Type="varchar" MaxLength="10" />
+          <Property Name="NotSelectedFontColor" Type="varchar" MaxLength="10" />
+          <Property Name="FontWeight" Type="varchar" MaxLength="50" />
+          <Property Name="ImageMimeType" Type="varchar" MaxLength="50" />
+          <Property Name="SelectedImageBits" Type="varbinary(max)" />
+          <Property Name="NotSelectedImageBits" Type="varbinary(max)" />
+          <Property Name="HasSubMenu" Type="bit" />
+          <Property Name="ExpandNotSelectedImageBits" Type="varbinary(max)" />
+          <Property Name="ExpandSelectedImageBits" Type="varbinary(max)" />
+          <Property Name="CollapseNotSelectedImageBits" Type="varbinary(max)" />
+          <Property Name="CollapseSelectedImageBits" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="MainMenuSubMenu">
+          <Key>
+            <PropertyRef Name="MainMenuSubMenuID" />
+          </Key>
+          <Property Name="MainMenuSubMenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MainMenuID" Type="int" Nullable="false" />
+          <Property Name="SubMenuDisplayLabel" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ReportName" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="SubMenuSortOrder" Type="int" Nullable="false" />
+          <Property Name="SelectedFillColor" Type="varchar" MaxLength="10" />
+          <Property Name="NotSelectedFillColor" Type="varchar" MaxLength="10" />
+          <Property Name="SelectedFontColor" Type="varchar" MaxLength="10" />
+          <Property Name="NotSelectedFontColor" Type="varchar" MaxLength="10" />
+          <Property Name="FontWeight" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <Association Name="FK_MainMenuID">
+          <End Role="MainMenu" Type="Self.MainMenu" Multiplicity="1" />
+          <End Role="MainMenuSubMenu" Type="Self.MainMenuSubMenu" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Reports">
-              <PropertyRef Name="Id" />
+            <Principal Role="MainMenu">
+              <PropertyRef Name="MainMenuID" />
             </Principal>
-            <Dependent Role="Sections">
-              <PropertyRef Name="Report ID" />
+            <Dependent Role="MainMenuSubMenu">
+              <PropertyRef Name="MainMenuID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -115,13 +162,40 @@
           <EntitySet Name="Evaluators" EntityType="Self.Evaluators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Release" EntityType="Self.Release" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Report Evaluation" EntityType="Self.Report Evaluation" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Section Evaluation" EntityType="Self.Section Evaluation" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Sections_ToReports" Association="Self.FK_Sections_ToReports">
-            <End Role="Reports" EntitySet="Reports" />
-            <End Role="Sections" EntitySet="Sections" />
+          <EntitySet Name="MainMenu" EntityType="Self.MainMenu" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="MainMenuSubMenu" EntityType="Self.MainMenuSubMenu" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Reports].[Id] AS [Id], 
+    [Reports].[Report Name] AS [Report Name], 
+    [Reports].[File Name] AS [File Name], 
+    [Reports].[Left Navigation Menu location] AS [Left Navigation Menu location], 
+    [Reports].[AssociatedTickets] AS [AssociatedTickets], 
+    [Reports].[DateAdded] AS [DateAdded], 
+    [Reports].[AddedBy] AS [AddedBy], 
+    [Reports].[DateModified] AS [DateModified], 
+    [Reports].[ModifiedBy] AS [ModifiedBy]
+    FROM [dbo].[Reports] AS [Reports]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Sections" EntityType="Self.Sections" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Sections].[Id] AS [Id], 
+    [Sections].[Report ID] AS [Report ID], 
+    [Sections].[OrderID] AS [OrderID], 
+    [Sections].[SectionName] AS [SectionName], 
+    [Sections].[Description] AS [Description], 
+    [Sections].[AssociatedTickets] AS [AssociatedTickets], 
+    [Sections].[DateAdded] AS [DateAdded], 
+    [Sections].[AddedBy] AS [AddedBy], 
+    [Sections].[DateModified] AS [DateModified], 
+    [Sections].[ModifiedBy] AS [ModifiedBy]
+    FROM [dbo].[Sections] AS [Sections]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_MainMenuID" Association="Self.FK_MainMenuID">
+            <End Role="MainMenu" EntitySet="MainMenu" />
+            <End Role="MainMenuSubMenu" EntitySet="MainMenuSubMenu" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -407,7 +481,66 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="Section_Evaluation" EntitySet="Section_Evaluations" />
           </AssociationSet>
+          <EntitySet Name="MainMenus" EntityType="SmokeTestsModel.MainMenu" />
+          <EntitySet Name="MainMenuSubMenus" EntityType="SmokeTestsModel.MainMenuSubMenu" />
+          <AssociationSet Name="FK_MainMenuID" Association="SmokeTestsModel.FK_MainMenuID">
+            <End Role="MainMenu" EntitySet="MainMenus" />
+            <End Role="MainMenuSubMenu" EntitySet="MainMenuSubMenus" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="MainMenu">
+          <Key>
+            <PropertyRef Name="MainMenuID" />
+          </Key>
+          <Property Name="MainMenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="DisplayLabel" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReportName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="MenuSortOrder" Type="Int32" Nullable="false" />
+          <Property Name="SelectedFillColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NotSelectedFillColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SelectedFontColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NotSelectedFontColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FontWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelectedImageBits" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NotSelectedImageBits" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="HasSubMenu" Type="Boolean" />
+          <Property Name="ExpandNotSelectedImageBits" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ExpandSelectedImageBits" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CollapseNotSelectedImageBits" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CollapseSelectedImageBits" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="MainMenuSubMenus" Relationship="SmokeTestsModel.FK_MainMenuID" FromRole="MainMenu" ToRole="MainMenuSubMenu" />
+        </EntityType>
+        <EntityType Name="MainMenuSubMenu">
+          <Key>
+            <PropertyRef Name="MainMenuSubMenuID" />
+          </Key>
+          <Property Name="MainMenuSubMenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MainMenuID" Type="Int32" Nullable="false" />
+          <Property Name="SubMenuDisplayLabel" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReportName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="SubMenuSortOrder" Type="Int32" Nullable="false" />
+          <Property Name="SelectedFillColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NotSelectedFillColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SelectedFontColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NotSelectedFontColor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FontWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="MainMenu" Relationship="SmokeTestsModel.FK_MainMenuID" FromRole="MainMenuSubMenu" ToRole="MainMenu" />
+        </EntityType>
+        <Association Name="FK_MainMenuID">
+          <End Type="SmokeTestsModel.MainMenu" Role="MainMenu" Multiplicity="1" />
+          <End Type="SmokeTestsModel.MainMenuSubMenu" Role="MainMenuSubMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainMenu">
+              <PropertyRef Name="MainMenuID" />
+            </Principal>
+            <Dependent Role="MainMenuSubMenu">
+              <PropertyRef Name="MainMenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -512,6 +645,47 @@
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainMenus">
+            <EntityTypeMapping TypeName="SmokeTestsModel.MainMenu">
+              <MappingFragment StoreEntitySet="MainMenu">
+                <ScalarProperty Name="CollapseSelectedImageBits" ColumnName="CollapseSelectedImageBits" />
+                <ScalarProperty Name="CollapseNotSelectedImageBits" ColumnName="CollapseNotSelectedImageBits" />
+                <ScalarProperty Name="ExpandSelectedImageBits" ColumnName="ExpandSelectedImageBits" />
+                <ScalarProperty Name="ExpandNotSelectedImageBits" ColumnName="ExpandNotSelectedImageBits" />
+                <ScalarProperty Name="HasSubMenu" ColumnName="HasSubMenu" />
+                <ScalarProperty Name="NotSelectedImageBits" ColumnName="NotSelectedImageBits" />
+                <ScalarProperty Name="SelectedImageBits" ColumnName="SelectedImageBits" />
+                <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+                <ScalarProperty Name="FontWeight" ColumnName="FontWeight" />
+                <ScalarProperty Name="NotSelectedFontColor" ColumnName="NotSelectedFontColor" />
+                <ScalarProperty Name="SelectedFontColor" ColumnName="SelectedFontColor" />
+                <ScalarProperty Name="NotSelectedFillColor" ColumnName="NotSelectedFillColor" />
+                <ScalarProperty Name="SelectedFillColor" ColumnName="SelectedFillColor" />
+                <ScalarProperty Name="MenuSortOrder" ColumnName="MenuSortOrder" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="DisplayLabel" ColumnName="DisplayLabel" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="MainMenuID" ColumnName="MainMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainMenuSubMenus">
+            <EntityTypeMapping TypeName="SmokeTestsModel.MainMenuSubMenu">
+              <MappingFragment StoreEntitySet="MainMenuSubMenu">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="FontWeight" ColumnName="FontWeight" />
+                <ScalarProperty Name="NotSelectedFontColor" ColumnName="NotSelectedFontColor" />
+                <ScalarProperty Name="SelectedFontColor" ColumnName="SelectedFontColor" />
+                <ScalarProperty Name="NotSelectedFillColor" ColumnName="NotSelectedFillColor" />
+                <ScalarProperty Name="SelectedFillColor" ColumnName="SelectedFillColor" />
+                <ScalarProperty Name="SubMenuSortOrder" ColumnName="SubMenuSortOrder" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="SubMenuDisplayLabel" ColumnName="SubMenuDisplayLabel" />
+                <ScalarProperty Name="MainMenuID" ColumnName="MainMenuID" />
+                <ScalarProperty Name="MainMenuSubMenuID" ColumnName="MainMenuSubMenuID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

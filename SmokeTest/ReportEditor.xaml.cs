@@ -146,7 +146,20 @@ namespace SmokeTest
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            var newReport = new Report();
+            string currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            var newReport = new Report { AddedBy = currentUser, DateAdded = DateTime.Now, DateModified = DateTime.Now, ModifiedBy = currentUser };
+            var newSectionEval = new Report_Evaluation
+            {
+                Evaluator_ID = 1,
+                Status_ID = 1,
+                Release_ID = CurrentRelease.Id,
+                Report_ID = newReport.Id,
+                AddedBy = currentUser,
+                DateAdded = DateTime.Now,
+                DateModified = DateTime.Now,
+                ModifiedBy = currentUser
+            };
+            ste.Report_Evaluations.Add(newSectionEval);
             var newRpt = new NewReport(ste, newReport, CurrentRelease);
             newRpt.Show();
         }

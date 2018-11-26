@@ -100,10 +100,15 @@ namespace SmokeTest
             TheReport = theReport;
             ste = oSte;
             var newOrderID = ste.Sections.Where(s => s.Report_ID == TheReport.Id).Max(s => s.OrderID) + 1;
+            string currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             TheSection = new SmokeTestDBClassLibrary.Section
             {
                 Report_ID = theReport.Id,
-                OrderID = newOrderID
+                OrderID = newOrderID,
+                AddedBy = currentUser,
+                DateAdded = DateTime.Now,
+                DateModified = DateTime.Now,
+                ModifiedBy = currentUser
             };
         }
 
@@ -117,12 +122,17 @@ namespace SmokeTest
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             ste.Sections.Add(TheSection);
+            string currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             var newSectionEval = new Section_Evaluation
             {
                 Evaluator_ID = 1,
                 Status_ID = 1,
                 Release_ID = CurrentRelease.Id,
-                Report_ID = TheReport.Id           
+                Report_ID = TheReport.Id,
+                AddedBy = currentUser,
+                DateAdded = DateTime.Now,
+                DateModified = DateTime.Now,
+                ModifiedBy = currentUser
             };
             ste.Section_Evaluations.Add(newSectionEval);
             ste.SaveChanges();

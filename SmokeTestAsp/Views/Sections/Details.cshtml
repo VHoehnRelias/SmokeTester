@@ -1,0 +1,90 @@
+﻿@model SmokeTestDBClassLibrary.Section
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Section</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SectionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedTickets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedTickets)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAdded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Report.Report_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Report.Report_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

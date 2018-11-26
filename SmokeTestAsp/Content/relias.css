@@ -1,0 +1,24 @@
+﻿body {
+}
+
+.menu {
+    background-color: #3F6969 !important;
+    color: white !important;
+}
+
+.menuButton {
+    background-color: #325352 !important;
+    color: white !important;
+    font-size: 15px;
+}
+
+a:active.menuButton {
+    background-color: #325352 !important;
+    color: white !important;
+    font-size: 15px;
+}
+
+a:focus.menuButton {
+    background-color: red !important;
+    color: yellow !important;
+}

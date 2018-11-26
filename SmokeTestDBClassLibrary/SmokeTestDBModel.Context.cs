@@ -32,5 +32,7 @@ namespace SmokeTestDBClassLibrary
         public virtual DbSet<Section_Evaluation> Section_Evaluations { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<MainMenu> MainMenus { get; set; }
+        public virtual DbSet<MainMenuSubMenu> MainMenuSubMenus { get; set; }
     }
 }

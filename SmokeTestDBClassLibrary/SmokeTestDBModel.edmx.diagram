@@ -22,6 +22,9 @@
         <AssociationConnector Association="SmokeTestsModel.FK_Sections_ToReports" ManuallyRouted="false" />
         <AssociationConnector Association="SmokeTestsModel.FK_Section_Evaluation_ToSections" ManuallyRouted="false" />
         <AssociationConnector Association="SmokeTestsModel.FK_Section_Evaluation_ToStatus" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SmokeTestsModel.MainMenu" Width="1.875" PointX="5" PointY="1" />
+        <EntityTypeShape EntityType="SmokeTestsModel.MainMenuSubMenu" Width="1.875" PointX="7.25" PointY="1.75" />
+        <AssociationConnector Association="SmokeTestsModel.FK_MainMenuID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -50,7 +50,8 @@ namespace SmokeTest
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DataContext = this;
             stm = new SmokeTestsEntities();
-            theRelease = new Release();
+            string currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            TheRelease = new Release { AddedBy= currentUser, DateAdded = DateTime.Now, DateModified = DateTime.Now, ModifiedBy= currentUser };
         }
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)

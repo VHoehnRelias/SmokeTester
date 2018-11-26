@@ -1,0 +1,77 @@
+﻿@model IEnumerable<SmokeTestDBClassLibrary.Section>
+
+@{
+    ViewBag.Title = "Report Sections";
+}
+
+<h2>
+    @ViewBag.ReportName
+</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SectionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssociatedTickets)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SectionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssociatedTickets)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DateAdded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateModified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+        </td>
+    </tr>
+}
+
+</table>

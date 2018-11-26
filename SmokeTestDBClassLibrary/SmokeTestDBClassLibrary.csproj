@@ -54,6 +54,12 @@
     <Compile Include="Evaluator.cs">
       <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MainMenu.cs">
+      <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenuSubMenu.cs">
+      <DependentUpon>SmokeTestDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Release.cs">
       <DependentUpon>SmokeTestDBModel.tt</DependentUpon>

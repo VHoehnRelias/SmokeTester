@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SmokeTestDBClassLibrary.MainMenuSubMenu>
+
+<li>
+    <a class="menuButton" data-toggle="collapse" data-target= @string.Format("#{0}SubMenu", ViewBag.MenuHeader) href="#"> @ViewBag.MenuHeader <span class="caret"></span> </a>
+    <div id= @string.Format("{0}SubMenu", ViewBag.MenuHeader) class="collapse show menu">
+        <ul>
+            @foreach (var item in Model)
+            {
+                if (ViewBag.ReportMenu == item.ReportName)
+                {
+                    <li class="nav-item btn btn-block menuButton">@Html.ActionLink(item.SubMenuDisplayLabel, "GotoReport", "SSRSMenu", new { report = item.ReportName }, null)</li>
+                }
+                else
+                {
+                    <li class="nav-item btn btn-block menuButton">@Html.ActionLink(item.SubMenuDisplayLabel, "GotoReport", "SSRSMenu", new { report = item.ReportName }, null)</li>
+                }
+            }
+        </ul>
+    </div>
+</li>
+@*<div class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> @ViewBag.MenuHeader <span class="caret"></span> </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
+    </ul>
+</div>*@

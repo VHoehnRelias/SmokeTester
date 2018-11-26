@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Menu</h2>
+<table >
+    <tr>
+        <td width="150px">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="@Html.Action("GotoReport","SSRSMenuController",new { path = "CaseLoadDashboard" })" class="btn btn-default btn-block">Caseload</a></li>
+                <li class="list-group-item"><a href="?" class="btn btn-default btn-block">Population</a></li>
+            </ul>
+        </td>
+        <td width="800px">
+            @Html.Partial("_CaseloadPartialView")        
+        </td>
+    </tr>
+</table>
+

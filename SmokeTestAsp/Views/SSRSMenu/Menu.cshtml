@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SmokeTestDBClassLibrary.MainMenu>
+@{
+    ViewBag.Title = "Kalamata Menu";
+}
+
+<table style="height: 100vh; vertical-align:top; text-align:left">
+    <tr>
+        <td valign="top" class="menu" >
+            <div id="navigation" style="width: 235px !important">
+                <nav class="navbar navbar-default navbar-static-top navbar-left">
+                    <ul class="nav">
+                        @foreach (var item in Model)
+                        {
+                            @*@Html.Partial("~/Views/Shared/_MenuItem.cshtml", item);*@
+                            @Html.Action("FillMenu",new { mainMenuId = item.MainMenuID });
+                        }
+                     </ul>
+                </nav>
+            </div>
+        </td>
+        <td style="vertical-align:top; width:100%">
+             <iframe id="ifReport" sandbox="Member list"
+                src=@ViewBag.Report
+                style="border: 5px; vertical-align:top; height: 95vh; width:100% "></iframe>
+        </td>
+    </tr>
+</table>

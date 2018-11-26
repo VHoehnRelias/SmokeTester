@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SmokeTestDBClassLibrary.Report>
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Report_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.File_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Left_Navigation_Menu_location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssociatedTickets)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Report_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.File_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Left_Navigation_Menu_location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssociatedTickets)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DateAdded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateModified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+            @Html.ActionLink("Sections", "ReportSections", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

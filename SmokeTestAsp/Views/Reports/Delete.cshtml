@@ -1,0 +1,88 @@
+﻿@model SmokeTestDBClassLibrary.Report
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Report</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Report_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Report_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.File_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.File_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Left_Navigation_Menu_location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Left_Navigation_Menu_location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedTickets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedTickets)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAdded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
